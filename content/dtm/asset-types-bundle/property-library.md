@@ -51,7 +51,7 @@ Asset properties have the following parameters:
 <tr>
 <td style="text-align:left"><b>Key</b></td>
 <td style="text-align:left">Used to uniquely identify and store the asset property in the DTM application.<br/><br/>
-Note that the key is automatically generated based on the label. You can modify the automatically generated key to suit to your needs only during asset property creation. You cannot edit the key after the asset property is created.
+Note that the key is automatically generated based on the label. You can modify the automatically generated key to suit to your needs only during asset property creation. You cannot edit the key after the asset property is created.<br/><br/>The length of the key is limited to a maximum of 254 characters.
 </td>
 <td style="text-align:left">Mandatory</td>
 </tr>
