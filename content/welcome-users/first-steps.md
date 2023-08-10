@@ -11,7 +11,7 @@ This section of the {{< product-c8y-iot >}} documentation highlights the basic s
 If you are technically interested in our IoT platform, you might want to learn about the architecture, technical concepts and domain models behind {{< product-c8y-iot >}} found in the <a href="/concepts/introduction/">Concepts guide</a>.
 
 
-### Step 1: Logging into {{< product-c8y-iot >}} for the first time
+### Step 1: Logging into Cumulocity IoT for the first time
 
 To login into the {{< product-c8y-iot >}} platform and have access to your tenant, use the following URL:
 
@@ -38,7 +38,7 @@ Click **Login** to enter the {{< product-c8y-iot >}} platform. Initially, you wi
 
 You will see a predefined dashboard with a number of [widgets](/cockpit/using-widgets/#using-widgets) such as a welcome message, a [map](/cockpit/widgets-collection/#widget-map) that shows the location of registered devices, and [all critical alarms](/cockpit/widgets-collection/#all-alarms). To see the list of all preset widget types head to [Widgets collection](/cockpit/widgets-collection/).
 
-### Step 2: Learn about {{< product-c8y-iot >}}'s basic UI functionalities and features
+### Step 2: Learn about Cumulocity IoT's basic UI functionalities and features
 
 #### Main screen elements
 
@@ -146,15 +146,45 @@ To revoke tokens, you must have ADMIN permission for the permission type "User m
 
 ### Step 3: Registering a device
 
-To integrate a device to {{< product-c8y-iot >}}, you need to register it by clicking **Registration** in the **Devices** menu of the navigator in the **Device management application**.
+To integrate a device to {{< product-c8y-iot >}}, you need to register in the **Device management application**. Devices can be connected to your {{< product-c8y-iot >}} account in different ways. In this tutorial, follow the instructions to register a single device manually.
+
+### To connect a device manually
 
 {{< c8y-admon-info >}}
-* To manually connect one device or several devices one by one follow the instructions at [single device registration](/device-management-application/registering-devices/#single-device-registration).
-
-* To connect larger amounts of devices in one step follow the instructions at [bulk device registration](/device-management-application/registering-devices/#bulk-device-registration).
+Depending on the type of device you want to connect, not all steps of the following process may be relevant.
 {{< /c8y-admon-info >}}
 
-For more information on how to register a device go to [Device management application > Registering devices](/device-management-application/registering-devices/).
+1. Click **Registration** in the **Devices** menu of the navigator.
+2. In the **Device registration** page, click **Register device** at the right of the top bar and from the dropdown menu select **Single registration** > **General**. The **Register devices** dialog box will be displayed.
+3. In the **Device ID** field, enter a unique ID for the device. To determine the ID, consult the device documentation. In case of mobile devices the ID usually is the IMEI (International Mobile Equipment Identity) often found on the back of the device.
+4. Optionally, select a group to assign your device to after registration, see also [Grouping devices](/device-management-application/grouping-devices/).
+5. Click **Add device** to register one more device. Again, enter the device ID and optionally select a group. This way, you can add multiple devices in one step.
+6. Click **Next** to register your device(s).
+
+{{< c8y-admon-info >}}
+In an {{< enterprise-tenant >}}, the {{< management-tenant >}} may also directly select a tenant to which the device will be added from here. Note that since the {{< management-tenant >}} does not have access to the subtenant's inventory you can either register devices to a tenant OR to a group, not both.
+
+<img src="/images/users-guide/DeviceManagement/devmgmt-device-registration-tenant.png" alt="General device registration">
+{{< /c8y-admon-info >}}
+
+After successful registration the device(s) will be listed in the [Device registration](/device-management-application/registering-devices/) page with the status "Waiting for connection".
+
+Turn on the device(s) and wait for the connection to be established.
+
+Once a device is connected, its status will change to "Pending acceptance".
+
+{{< c8y-admon-info >}}
+The **Pending acceptance** screen might differ depending on the [security token policy](/device-management-application/registering-devices/#security-token-policy).
+{{< /c8y-admon-info >}}
+
+Click **Accept** to confirm the connection. The status of the device will change to "Accepted".
+
+{{< c8y-admon-info >}}
+In case of any issues, consult the documentation applicable for your device type in the [{{< product-c8y-iot >}} {{< device-portal >}}]({{< link-device-portal >}}) or look up the manual of your device.
+{{< /c8y-admon-info >}}
+
+
+For more information on registering devices such as [single device registration](/device-management-application/registering-devices/#single-device-registration) and [bulk device registration](/device-management-application/registering-devices/#bulk-device-registration) go to [Device management application > Registering devices](/device-management-application/registering-devices/). To learn how to view all devices connected to your account head to [Device management application > Viewing devices](/device-management-application/viewing-devices/).
 
 #### Connecting a smartphone with the {{< product-c8y-iot >}} Sensor App
 
@@ -172,14 +202,104 @@ The Raspberry Pi is a relatively simple and cheap yet powerful device. This make
 
 For an overview of the installation and configuration of thin-edge.io with Raspberry Pi go to [Device integration > Integration tutorials > thing-edge.io on a Raspberry Pi](/device-integration/integration-tutorials/#prerequisites).
 
+#### Grouping devices
+Devices can be grouped according to a particular use case. A device can be located in multiple groups and groups themselves can again be part of multiple groups.
+
+{{< product-c8y-iot >}} distinguishes between top-level groups and subgroups:
+
+* **Top-level groups** are shown in the **Group** menu in the navigator at top-level.
+* **Subgroups** can be used to further subdivide top-level groups.
+
+For more information on this feature, go to our section about [Grouping devices](/device-management-application/grouping-devices/).
+
 ### Step 4: Working with dashboards
 
-The predefined dashboard can be edited and designed individually according to your needs. You can add, remove or change widgets being displayed here. Go to [Widgets collection](/cockpit/widgets-collection/) to see a list of all preset widgets.
+The predefined dashboard can be edited and designed individually according to your needs. You can add, remove or change widgets being displayed here allowing you to visualize data emanating from your device or devices. The cockpit application in {{< product-c8y-iot >}} provides you with an unrestrained overview and the essential dashboards to monitor your IoT data the way you want.
+
+Follow the instructions below to create a new dashboard with the device you registered in the last step. You may need to check if you meet the [requirements](/cockpit/dashboards/) first.
+
+#### Creating a dashboard
+
+1. Select the group or the device in the navigator for which to create a dashboard.
+2. Click the plus icon right from the tabs to open the dashboard editor.
+
+3. In the **Tab** section of the dashboard editor, provide the following information:
+
+    * An icon which is shown next to the dashboard name in the navigator.
+    * A menu label to be used as the name of the dashboard.
+    * The location of the dashboard in the navigator, with "10000" being ordered first and "-10000" last.
+<br><br>
+
+4. Enable the option **Apply dashboard to all devices of type <device type>** to share the dashboard with all devices of this type.
+
+5. In the **Availability** section, specify which users have access to the dashboard based on global roles. By default, all available global roles are selected, which means that a user with at least one such role has access to the dashboard.
+
+   {{< c8y-admon-info >}}
+- Dashboard are always visible to its owner and to users with ADMIN permission for the permission type "Inventory".
+- This functionality is entirely based on client-side solutions. If users have an accurate link to the dashboard, they will still be able to access it.
+    {{< /c8y-admon-info >}}
+
+6. In the **Layout** section you can select a theme for the dashboard (one of "Light", "Dark", "Transparent" or "Branded") and a default header style for the widgets (one of "Regular", "Border", "Overlay", or "Hidden"). Moreover, you can change the default widget margin (default value is 15 px).
+7. Enable the option **Translate widget titles if possible**, to have the widget title translated every time the language is changed.
+
+    {{< c8y-admon-info >}}
+The widget titles will be translated only if a valid translation is available.
+    {{< /c8y-admon-info >}}
+8. In the **Preview** section at the right, a preview of the selected layout settings is immediately displayed to visualize your selections.
+
+9. Click **Save** to create and open the dashboard.
+
+You have created a dashboard, in step 6 you will learn how to add widgets.
+
+Go to the [Working with dashboards](/cockpit/dashboards/) for more on how to share, edit, copy, and delete dashboards.
+
+### Step 5: Working with reports
+
+Reports enable you to track applications, alarms, assets, and other data in a dashboard layout. Reports are global dashboard pages, regardless of the [asset hierarchy](/cockpit/managing-assets/#asset-hierarchy). To work with reports you may need to check if you meet the [requirements](/cockpit/reports/) first.
+
+![Reports](/images/users-guide/cockpit/cockpit-reports-list.png)
+
+#### Creating a report
+
+1. Click **Add report** in the top menu bar to open the **Add report** dialog.
+  <br>![Add report](/images/users-guide/cockpit/cockpit-report-add.png)<br>
+2. In the **Menu label** field, enter a name for the report and optionally provide a description below.
+3. Select **Show in navigator** if you want the report to be displayed in the navigator. Select the position of the report in the navigator. Depending on the value it will be positioned relative to the existing items. If for example "Home" has the value "10000" it will be positioned above "Home", if the value is "10001" or higher.
+4. In the **Layout** section you can select a theme for the report (one of "Light", "Dark", "Transparent" or "Branded") and a default header style for the widgets (one of "Regular", "Border", "Overlay", or "Hidden"). Moreover, you can change the default widget margin (default value is 15 px).
+If you enable the option **Translate widget titles if possible**, the widget title will be translated every time the language is changed. Note that the widget titles will be translated only if a valid translation is available.
+Click **Save** to create the report and add it to the report list.
+
+{{< c8y-admon-info >}}
+In the **Preview** section at the right, a preview of the selected layout settings is immediately displayed to visualize your selections.
+{{< /c8y-admon-info >}}
+
+You have created a report, in step 6 you will learn how to add widgets.
+
+Follow the instructions below to create a new report. You may need to check if you meet the [requirements](/cockpit/reports/) first.
+
+Go to the [Working with reports](/cockpit/reports/) for more on how to edit and delete reports.
+
+### Step 6: Adding a widget to a dashboard or a report
+
+Widgets can display maps, images, graphs, tables and other graphic representations of data. Widgets are useful to track information, for example on alarms, assets or applications, or provide maps, quick links and more in dashboards or reports.  Go to [Widgets collection](/cockpit/widgets-collection/) to see a list of all preset widgets that {{< product-c8y-iot >}} provides.
 
 {{< c8y-admon-info >}}
 You can also develop your own widgets and add them to your {{< product-c8y-iot >}} account. For more information go to [Developing applications > Tutorials > Add a custom widget to a dashboard](/web/tutorials/#add-a-custom-widget).
 {{< /c8y-admon-info >}}
 
-#### Creating a dashboard
+#### To add a widget to a dashboard or a report
 
-### Step 5:
+1. Click **Add widget** in the top menu bar or click the **Add widget** button on the main page (only available in case of an empty dashboard/report).
+
+2. In the **Add widget** dialog, select a widget type.
+
+3. Next, configure the widget. According to the selected widget type, different parameters may be specified under **Configuration**. For details on each widget type refer to [Widgets collection](/cockpit/widgets-collection/).
+
+4. In the **Appearence** tab, you can customize the content and header style for the widget individually, in the same way as specifying the layout of a [dashboard](/cockpit/dashboards/).
+
+{{< c8y-admon-info >}}
+
+The header styles "Regular" and "Border" can be used for all widgets while the header styles "Overlay" and "Hidden" remove the header and should only be used for widgets which benefit from a full-screen experience, for example "Image" or "Map". For other widgets, like "Alarms list" or "Data point table", these header styles should not be used.
+{{< /c8y-admon-info >}}
+
+5.  Click **Save** to add the widget to the dashboard or report.
