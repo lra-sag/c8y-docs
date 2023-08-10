@@ -48,15 +48,15 @@ helpcontent:
 
 The Device management application provides various features that support you in efficiently managing your devices:
 
-| Feature                                              | Description                                                                                                                                 |
-|:-----------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
-| [Managing device firmware](#firmware-repo)           | How to retrieve and manage firmware, firmware versions, and patches in the firmware repository and how to install or update them on devices. |
-| [Managing device software](#software-repo)           | How to retrieve and manage software and software versions in the software repository and how to install or update them on devices.          |
-| [Managing configurations](#configuration-repository) | How to retrieve configuration data, store and manage it in a configuration repository as configuration snapshot.                         |
-| [Managing device credentials](#credentials)          | How to manage all credentials generated for your connected devices.                                                                         |
-| [Managing device profiles](#device-profiles)         | How to manage device profiles - a set of firmware, software, and configuration - and apply them to devices.                                 |
-| [Managing trusted certificates](#trusted-certificates)| How to manage trusted certificates.                                                                                                         |
-
+| Feature                                                | Description                                                                                                                                 |
+|:-------------------------------------------------------|:--------------------------------------------------------------------------------------------------------------------------------------------|
+| [Managing device firmware](#firmware-repo)             | How to retrieve and manage firmware, firmware versions, and patches in the firmware repository and how to install or update them on devices. |
+| [Managing device software](#software-repo)             | How to retrieve and manage software and software versions in the software repository and how to install or update them on devices.          |
+| [Managing configurations](#configuration-repository)   | How to retrieve configuration data, store and manage it in a configuration repository as configuration snapshot.                         |
+| [Managing device credentials](#credentials)            | How to manage all credentials generated for your connected devices.                                                                         |
+| [Managing device profiles](#device-profiles)           | How to manage device profiles - a set of firmware, software, and configuration - and apply them to devices.                                 |
+| [Managing trusted certificates](#trusted-certificates) | How to manage trusted certificates.                                                                                                         |
+| [Certificate settings](#certificate-settings)          | How to manage certificates settings like CRL. 
 All features are accessible through the **Management** menu in the navigator:
 
 ![Management menu](/images/users-guide/DeviceManagement/devmgmt-management-menu.png)
@@ -606,3 +606,72 @@ For details on the fields, see the description on adding certificates above.
 
 To permanently delete a certificate from the trusted certificates list, click the menu icon at the right of the respective entry and in the context menu click **Delete**.
 The certificate will be permanently deleted.
+
+<a name="certificate-settings"></a>
+### Certificate Settings
+
+{{< c8y-admon-info >}}
+This section describes how to fine tune various certificate configurations.
+{{< /c8y-admon-info >}}
+
+* [Certificate Revocation List (CRL)](#crl-settings)
+
+#### CRL Settings
+
+{{< c8y-admon-info >}}
+In general, CRL(Certificate Revocation List) contains a list of revoked digital certificates and their serial numbers. 
+These are issued by certificate authorities (CAs) periodically and published through an endpoint called CDP (CRL Distribution Point).
+Revocation reasons and dates are included in the CRL.
+
+In {{< product-c8y-iot >}} terms, if there is a breach at device certificates signed by Trusted certificate, the users can let the platform know about the revoked certificates in 2 ways.
+1.	**Online Revocation.**
+	  Where the Trusted CA maintains the Certificate Revocation Lists with the list of certificate serial numbers that are breached and provide this information in the form of a CDP (CRL Distribution Point)
+2.	**Offline Revocation**.
+	  Where the trusted CA doesn't maintain the revocation details of the certificates, in which case, the platform users can manually upload the serial numbers of the revoked certificates.
+
+Note that both online and offline CRL checks are by default **unchecked**.
+{{< /c8y-admon-info >}}
+
+##### To enable online revocation
+
+  1. Click on **CRL check** in right corner of the screen.
+  2. Check **Online**
+
+![CRl Details](/images/users-guide/DeviceManagement/devmgmt-crl-option-check.png)
+
+##### To enable offline revocation
+  1. Click on **CRL check** in right corner of the screen.
+  2. Check **Offline** 
+  3. To add revoked certificate serial numbers manually, enter the serial number and date in **Revoked certificates list** panel.
+     
+  	 Use `+` button to add new entries in below format
+     | Field             | Description                                                |
+     |:------------------|:------------------------------------------------------------|
+     | Serial Number  | Needs to be in `Hex Value`|
+     | Date        | Date format: `dd MMM yyyy HH:mm:ss`. Revocation date cannot be a future date.|
+  4. Click save to confirm your entries.
+
+{{< c8y-admon-important >}}
+
+Certificate revocation is an irreversible process.
+
+{{< /c8y-admon-important >}}
+
+
+##### Bulk import for offline
+
+{{< c8y-admon-info >}}
+Revoked certificate serial numbers can be added in bulk. 
+Each file can hold at maximum `5000` revocation entries.
+Multiple upload is allowed.In case of duplicate the latest one (last uploaded one) will be considered.
+{{< /c8y-admon-info >}}
+
+To bulk  upload follow the below steps
+1. Download CSV template from **Revoked certificates list** panel.
+2. Fill in all revoked certificate serial numbers and revocation dates.
+3. Upload the filled CSV file using file upload.
+
+##### To download latest offline CRL file
+
+Go to  **Revoked certificates list** panel and click **Download CRL file**.
+
