@@ -619,7 +619,7 @@ This section describes how to fine tune various certificate configurations.
 #### CRL Settings
 
 {{< c8y-admon-info >}}
-In general, CRL(Certificate Revocation List) contains a list of revoked digital certificates and their serial numbers. 
+In general, CRL(Certificate Revocation List) contains a list of serial numbers of revoked certificates. 
 These are issued by certificate authorities (CAs) periodically and published through an endpoint called CDP (CRL Distribution Point).
 Revocation reasons and dates are included in the CRL.
 
@@ -635,7 +635,7 @@ Note that both online and offline CRL checks are by default **unchecked**.
 ##### To enable online revocation
 
   1. Click on **CRL check** in right corner of the screen.
-  2. Check **Online**
+  2. Enable **Online** option.
 
 ![CRl Details](/images/users-guide/DeviceManagement/devmgmt-crl-option-check.png)
 
@@ -648,7 +648,7 @@ Note that both online and offline CRL checks are by default **unchecked**.
      | Field             | Description                                                |
      |:------------------|:------------------------------------------------------------|
      | Serial Number  | Needs to be in `Hex Value`|
-     | Date        | Date format: `dd MMM yyyy HH:mm:ss`. Revocation date cannot be a future date.|
+     | Date (Optional)       | Date format: `dd MMM yyyy HH:mm:ss`. Revocation date cannot be a future date. If the date field is empty, current date is considered|
   4. Click save to confirm your entries.
 
 {{< c8y-admon-important >}}
@@ -666,12 +666,12 @@ Each file can hold at maximum `5000` revocation entries.
 Multiple upload is allowed.In case of duplicate the latest one (last uploaded one) will be considered.
 {{< /c8y-admon-info >}}
 
-To bulk  upload follow the below steps
+To bulk upload, follow the below steps
 1. Download CSV template from **Revoked certificates list** panel.
 2. Fill in all revoked certificate serial numbers and revocation dates.
 3. Upload the filled CSV file using file upload.
 
-##### To download latest offline CRL file
+##### To download or view the offline CRL file
 
 Go to  **Revoked certificates list** panel and click **Download CRL file**.
 
