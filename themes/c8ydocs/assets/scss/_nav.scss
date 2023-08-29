@@ -38,13 +38,15 @@
 
   .dropdown {
     position: relative;
+    
     &.show {
       z-index: 1010;
     }
   }
   .dropdown-toggle {
     border: 1px solid var(--c8y-root-component-border-color);
-    padding: 6px 16px;
+    padding: 6px 1rem;
+    min-height: 38px;
     font-weight: bold;
     color: $gray-text;
     position: relative;

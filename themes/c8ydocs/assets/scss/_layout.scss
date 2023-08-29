@@ -4,6 +4,15 @@ body{
   background-color: $body-bg-color;
   position: relative;
   padding-top: 64px;
+  > main, .main-content {
+    opacity: 0;
+    transition: opacity .15s linear;
+  }
+  &.loaded{
+   > main,  .main-content{
+      opacity: 1;
+    }
+  }
   &.open{
     overflow-x: hidden;
   }

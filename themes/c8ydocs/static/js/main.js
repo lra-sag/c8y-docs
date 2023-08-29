@@ -102,6 +102,8 @@ var main = (function ($) {
 
 
     // scroll to the top of the page
+    
+    // Navigate to the top
     $('.to-the-top').click(function (e) {
       e.preventDefault();
       $('body, html').animate({ scrollTop: 0 }, 500, 'swing');
@@ -148,7 +150,9 @@ var main = (function ($) {
         $this.wrap("<div class='table-responsive'></div>");
       }
     });
- 
+    setTimeout(function () {
+      $('body').addClass('loaded');
+    }, 10);
   }
   return {
     init: initializer
