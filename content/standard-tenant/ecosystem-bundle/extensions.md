@@ -10,6 +10,7 @@ helpcontent:
     content: "On the **Extensions** page, you find a list of all extension packages available in your tenant. Extension packages are combinations of plugins and blueprints which can be packed together into a single file and deployed to the platform. To add a new extension package, click **Add extension package** at the top right."
 ---
 
+{{< c8y-admon-preview title="Preview for feature MTM-99999">}}
 Click **Extensions** in the **Ecosystem** menu in the navigator to display all extensions in your account.
 
 Extensions make it easier to share and reuse UI features across different applications. UI features can be developed as plugins and added to an application without coding knowledge. There are two types of extensions:
@@ -18,6 +19,7 @@ Extensions make it easier to share and reuse UI features across different applic
 - Blueprints
 
 Blueprint applications must be deployed, while plugins are added to other applications. This allows you to scaffold entire solutions or to extend existing ones. Due to the micro frontend technology, this can happen at runtime without rebuilding.
+{{< /c8y-admon-preview >}}
 
 ### Plugins {#plugins}
 
