@@ -1,7 +1,7 @@
 ---
 weight: 70
 title: Summary
-layout: redirect
+layout: bundle
 ---
 
 {{< product-c8y-iot >}} addresses security on various levels.

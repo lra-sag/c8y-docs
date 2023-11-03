@@ -1,5 +1,7 @@
 ---
-weight: 30
-layout: bundle
 title: Dashboards
+layout: bundle
+section: 
+  - app_enablement
+weight: 30
 ---

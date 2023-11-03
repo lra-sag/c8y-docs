@@ -1,20 +1,66 @@
-
 {{ define "main" }}
 <main>
-    <article>
-        <header>
-            <h1>{{.Title}}</h1>
-        </header>
-        <!-- "{{.Content}}" pulls from the markdown content of the corresponding _index.md -->
+  <div class="breadcrumbs-container">
+    {{- partial "breadcrumbs.html" . -}}
+  </div>
+  <div class="home-top">
+    <section class="home-top__content">
+        <h1>{{replace (replace (replace .Title "var-company-sag" .Site.Params.company_sag) "var-enterprise-tenant" .Site.Params.enterprise_tenant)  "var-product-c8y-iot" .Site.Params.product_c8y_iot}}</h1>
         {{.Content}}
-    </article>
-    <ul>
-    <!-- Ranges through content/post/*.md -->
-    {{ range .Pages }}
-        <li>
-            <a href="{{.Permalink}}">{{.Title}}</a>
-        </li>
-    {{ end }}
-    </ul>
+    </section>
+    {{.Params.svg | safeHTML}}
+  </div>
+<div class="home-grid">
+  {{ range where .Pages "Type" "root" }}
+  <a href='
+      {{if (isset .Params "external") }}
+        {{.Params.external}}
+      {{else}}
+        {{.Permalink}}
+      {{end}}
+    ' class="product-card">
+      <div class="product-card__header">
+        <i class="c8y-icon-duocolor {{.Params.icon}}"></i>
+        <h2>{{.Title}}
+          {{if (isset .Params "external") }}
+            <i class="dlt-c8y-icon-external-link" style="font-size: 14px;" title="External website"></i>
+          {{end}}
+        </h2>
+      </div>
+        {{.Content }}
+        {{ if (isset .Params "audience")}}
+          <div class="m-t-auto d-flex gap-8 a-i-center">
+            {{ range $t := .Params.audience }}
+              <div class="label 
+                {{if eq $t "Users"}}
+                  label-primary 
+                {{ else if eq $t "Administrators"}}
+                label-success
+                {{ else if eq $t "Developers"}}
+                label-info
+                {{ else if eq $t "Business"}}
+                  label-warning
+                {{end}}
+                  ">
+                <i class='
+                {{if eq $t "Users"}}
+                  dlt-c8y-icon-users
+                {{ else if eq $t "Administrators"}}
+                  dlt-c8y-icon-male-user
+                {{ else if eq $t "Developers"}}
+                  dlt-c8y-icon-programming
+                {{ else if eq $t "Business"}}
+                  dlt-c8y-icon-permanent-job
+                {{end}}
+                '></i> 
+                {{$t}}
+              </div>
+            {{end}}
+          </div>
+        {{end}}
+    </a>
+    {{end}}
+  </div>
 </main>
+{{- partial "footer.html" . -}}
 {{ end }}

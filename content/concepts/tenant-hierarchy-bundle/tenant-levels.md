@@ -1,14 +1,16 @@
 ---
-weight: 30
 title: Hierarchy levels
-layout: redirect
+layout: bundle
+weight: 30
+section:
+  - platform_administration
 ---
 
 The {{< product-c8y-iot >}} tenant concept builds a 3-level hierarchy, including the following levels from bottom to top:
 
-* [{{< standard-tenant >}}](#standard-tenant)
-* [{{< enterprise-tenant >}}](#enterprise-tenant)
-* [{{< management-tenant >}}](#management-tenant)
+- [{{< standard-tenant >}}](#standard-tenant)
+- [{{< enterprise-tenant >}}](#enterprise-tenant)
+- [{{< management-tenant >}}](#management-tenant)
 
 
 ![3-level hierarchy](/images/concepts-guide/tenant-hierarchy.png)
@@ -21,8 +23,8 @@ Refer to the [{{< c8y-pricing >}}]({{< link-c8y-pricing >}}) for details on our 
 Refer to your contract for details on your individual subscriptions.
 {{< /c8y-admon-info >}}
 
-<a name="standard-tenant"></a>
-### Standard tenant
+
+### Standard tenant {#standard-tenant}
 
 At the bottom of the hierarchy you can find single tenants which are represented by the concept of {{< standard-tenant >}}s in {{< product-c8y-iot >}}.
 
@@ -32,10 +34,10 @@ In a {{< standard-tenant >}}, multiple parties are reflected by separate users. 
 
 {{< standard-tenant >}}s, as direct subtenants of the {{< management-tenant >}}, provide fully standardized functionality.
 
-Details on the administration of {{< standard-tenant >}}s are described in the [Administration](/users-guide/administration/) section in the *User guide*.
+Details on the administration of {{< standard-tenant >}}s are described in [{{< standard-tenant >}} administration](/standard-tenant/).
 
-<a name="enterprise-tenant"></a>
-### Enterprise tenant
+
+### Enterprise tenant {#enterprise-tenant}
 
 An {{< enterprise-tenant >}} offers additional administrative functionality compared to a {{< standard-tenant >}}, the major difference being **multi-tenancy**.
 
@@ -45,7 +47,7 @@ Using an {{< enterprise-tenant >}}, you can
 * manage the subscribed applications/features of the subtenants
 * invoice subtenants based on usage statistics
 
-See also [multi-tenancy approach](/concepts/tenant-hierarchy/#multi-tenancy).
+See also [Multi-tenancy](/concepts/tenant-hierarchy/#multi-tenancy).
 
 Moreover, an {{< enterprise-tenant >}} includes the following additional features:
 
@@ -56,10 +58,10 @@ Moreover, an {{< enterprise-tenant >}} includes the following additional feature
 
 {{< enterprise-tenant >}}s offer standardized functionality combined with some individual customization.
 
-Details on the usage of this additional features and on the additional administration options of the {{< enterprise-tenant >}} can be found in the [{{< enterprise-tenant >}}](/users-guide/enterprise-tenant/) section in the *User guide*.
+Details on the usage of this additional features and on the additional administration options of the {{< enterprise-tenant >}} can be found in [{{< enterprise-tenant >}}](/enterprise-tenant/).
 
-<a name="management-tenant"></a>
-### Management tenant
+
+### Management tenant {#management-tenant}
 
 The {{< management-tenant >}} builds the highest level of the {{< product-c8y-iot >}} tenant hierarchy.
 

@@ -1,8 +1,7 @@
 ---
-weight: 70
 title: Examples
 layout: bundle
-aliases:
-  - /http
-  - /hello-microservice-python
+section:
+  - app_enablement
+weight: 70
 ---

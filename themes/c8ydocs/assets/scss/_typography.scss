@@ -8,9 +8,6 @@ html {
   }
 }
 
-// VISUAL TYPE:
-// base size: 16px
-// scale: Augmented fourth - 1.414
 
 // ====================
 // HEADINGS
@@ -21,7 +18,7 @@ h2,
 h3,
 h4 {
   margin: 0 0 1em;
-  font-weight: inherit;
+  font-weight: 500;
   line-height: 1.2;
   font-family: $font-headings;
 }
@@ -36,48 +33,43 @@ h4 {
 h1,
 .h1 {
   margin-top: 0;
-  font-size: 40px;
-  @media(min-width: $grid-breakpoint){
-    font-size: 50px;
-  }
-}
-
-h2,
-.h2 {
-  font-size: 28px;
-  font-weight: 300;
+  font-size: 32px;
   @media(min-width: $grid-breakpoint){
     font-size: 36px;
   }
 }
 
+h2,
+.h2 {
+  font-size: 22px;
+  @media(min-width: $grid-breakpoint){
+    font-size: 30px;
+  }
+}
+
 h3,
 .h3 {
-  font-size: 21px;
-    @media(min-width: $grid-breakpoint){
-      font-size: 28px;
+  font-size: 20px;
+  @media(min-width: $grid-breakpoint){
+      font-size: 24px;
     }
   }
 
 h4,
 .h4 {
-  font-size: 16px;
+  font-size: 18px;
   @media(min-width: $grid-breakpoint){
-    font-size: 21px;
+    font-size: 20px;
   }
 }
 
 h5, .h5{
   font-size: 16px;
-}
-
-.lead{
-  font-size: 1.2em;
-  font-weight: 300;
   @media(min-width: $grid-breakpoint){
-    font-size: 1.4em;
+    font-size: 18px;
   }
 }
+
 
 p {
   margin: 0 0 1.3em;
@@ -101,8 +93,8 @@ blockquote {
   margin: 22px 0 44px;
   padding: 22px 22px;
   border-radius: 3px;
-  background-color: #f2f8fd;
-  color: $blue-20;
+  background-color: var(--c8y-palette-gray-90);
+  color: var(--c8y-brand-primary);
   font-size: 16px;
   p:last-child, ul:last-child, ol:last-child {
     margin-bottom: 0;
@@ -113,15 +105,15 @@ code{
   padding: 2px 4px;
   border-radius: 3px;
   font-size: 90%;
-  background-color: #ddd;
-  color: #282c34;
+  background-color: var(--c8y-code-background);
+  color: var(--c8y-code-color);;
 }
 
 kbd{
   padding: 2px 4px;
   border-radius: 3px;
-  background-color: #d8edf1;
-  color: #017de9;
+  background-color: var(--c8y-palette-status-info-light);
+  color:var(--c8y-palette-status-info);
   font-size: 90%;
 }
 
@@ -135,6 +127,17 @@ pre .hljs{
   list-style: none;
 }
 
+.text-regular{
+  font-weight: 400;
+}
+
+.text-medium{
+  font-weight: 500;
+}
+
+.text-muted{
+  color: var(--c8y-root-component-color-text-muted);
+}
 
 .text-center{
   text-align: center;
@@ -158,6 +161,10 @@ pre .hljs{
   text-transform: capitalize;
 }
 
+.text-regularcase{
+  text-transform: none;
+}
+
 .text-truncate{
   display: block;
   text-overflow: ellipsis;
@@ -171,15 +178,15 @@ pre .hljs{
 
 hr{
   margin: $size-2 0;
-  border-top: 1px solid $gray-90;
+  border-top: 1px solid var(--c8y-root-component-border-color);
   border-bottom: 0;
 }
 
 a{
-  color: $blue-primary;
+  color: var(--c8y-link-color);
   text-decoration: none;
   &:hover{
     text-decoration: underline;
-    color: darken($blue-primary, 15%);
+    color: var(--c8y-link-color-hover);
   }
 }

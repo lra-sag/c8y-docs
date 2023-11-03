@@ -1,10 +1,12 @@
 ---
 weight: 50
 title: Backup and restore in VMware Workstation Pro
-layout: redirect
+layout: bundle
+section:
+  - edge_server
 ---
 
-### Creating a backup in VMware Workstation Pro
+### Creating a backup in VMware Workstation Pro {#creating-a-backup-in-vmware-workstation-pro}
 
 1. Shut down the Edge appliance. <br><br>
 <img src="/images/edge/edge-backup-vmware-pro-power-off.png" name="Power Off" style="width:75%;"/>
@@ -16,7 +18,7 @@ layout: redirect
 
 4. Click **Save**.
 
-### Restoring an Edge appliance in VMware Workstation Pro
+### Restoring an Edge appliance in VMware Workstation Pro {#restoring-an-edge-appliance-in-vmware-workstation-pro}
 
 1. Click **File** > **Open**.
 

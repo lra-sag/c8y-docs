@@ -1,7 +1,8 @@
 ---
 weight: 40
 title: Application security
-layout: redirect
+layout: bundle
+
 ---
 
 Application security addresses security at the software level.

@@ -1,8 +1,14 @@
 ---
-title: Cumulocity IoT OEE guide
-bundle: oee
-icon: "c8y-icon c8y-icon-tools"
+title: Cumulocity IoT OEE
+icon: "c8y-icon c8y-icon-oee"
 type: root
-layout: root
-weight: 60
+layout: redirect
+bundle: oee
+section:
+  - app_enablement
+audience:
+  - Users
+weight: 100
 ---
+
+Use the OEE application to measure the efficiency, effectiveness and performance of your production processesby creating OEE configuration calculations for machines and machine lines.

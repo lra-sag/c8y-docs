@@ -10,8 +10,24 @@ To support you with bootstrapping, running and deploying applications we have bu
 npm install -g @c8y/cli
 ```
 
+If you don't want to install the `@c8y/cli` globally you can also run it with the npx command. For example, you can scaffold a new project quickly by executing the following command:
 
-### Usage
+```
+npx @c8y/cli new
+```
+
+A new project creates a local `@c8y/cli`. You can run the project by navigating to its directory and executing the following commands:
+
+```
+npm install && npx c8ycli serve
+```
+
+The `serve` command starts a local development server. It supports two important flags:
+
+- `-u`: The -u parameter specifies the {{< product-c8y-iot >}} instance to which all API requests are proxied. This means data is actually pulled from the configured {{< product-c8y-iot >}} instance.
+- `-p`: The port to use. If not defined, port 9000 is used. If you have a server running on this port already, the command will fail. The application will then be served at the URL `http://localhost:<<port>>/apps/<<your-application-name>>/`. Tip: Click the URL in the terminal while holding the "control" key.
+
+### General usage {#general-usage}
 
 ```
 c8ycli [options] [command]
@@ -21,7 +37,7 @@ c8ycli [options] [command]
 The commands must be executed from the root path of the project.
 {{< /c8y-admon-info >}}
 
-### Options
+### Options {#options}
 
 ```
     -u, --url <url>                 The URL of the remote instance
@@ -29,9 +45,9 @@ The commands must be executed from the root path of the project.
     -h, --help                      Provides usage information
 ```
 
-### Commands
+### Commands {#commands}
 
-All the commands except of ```new``` take an array of [glob patterns](https://en.wikipedia.org/wiki/Glob_(programming)). These will be solved to folders or entry point manifests.
+All the commands except of `new` take an array of [glob patterns](<https://en.wikipedia.org/wiki/Glob_(programming)>). These will be resolved to directories or entry point manifests.
 
 ```
     new [name] [template]                   Creates a folder to start a new application or extend an existing one
@@ -41,23 +57,24 @@ All the commands except of ```new``` take an array of [glob patterns](https://en
     locale-extract [options] [srcPaths...]  Extracts all strings for translation and outputs the .po files to defined folder
 ```
 
-### The `new` command
-The `c8ycli new [name] [template]` helps to start an empty application or to extend one of our existing applications (Cockpit, Devicemanagement or Administration). To extend an existing application use as `[name]` and `[template]` the name of the existing application like this:
+### The `new` command {#the-new-command}
+
+The `c8ycli new [name] [template]` command creates an empty application or extends an existing application (Cockpit, Devicemanagement or Administration). To extend an existing application use the name of the existing application as `[name]` and `[template]` like this:
+
 ```
 $ c8ycli new cockpit cockpit
 ```
 
 {{< c8y-admon-tip >}}
 The `c8ycli new` command has a `-a` flag which defines which package to use for scaffolding. This way you can also define which version of the app you want to scaffold, for example:
-- `c8ycli new my-cockpit cockpit -a @c8y/apps@1004.11.0` will scaffold an app with the version `10.4.11.0`
-- `c8ycli new my-cockpit cockpit -a @c8y/apps@latest` will scaffold an app with the latest official release. Same as if used without the `-a` flag
-- `c8ycli new my-cockpit cockpit -a @c8y/apps@next` will scaffold an app with the latest beta release.
-{{< /c8y-admon-tip >}}
 
+`c8ycli new my-cockpit cockpit -a @c8y/apps@1004.11.0` will scaffold an app with the version `10.4.11.0`
+  {{< /c8y-admon-tip >}}
 
-The `c8ycli new` command can also be provided on its own without the `[name]` and `[template]` options. In this case a few steps must be completed via the interface before the app is scaffolded.
+The `c8ycli new` command can also be provided on its own without the `[name]` and `[template]` options. In this case, follow the steps below to complete the process via the interface before the application is scaffolded.
 
 **Step 1:**
+
 ```
 ? Enter the name of the project: (my-application)
 ```
@@ -69,6 +86,7 @@ This step can also be skipped if the name is provided in the initial command: `c
 {{< /c8y-admon-info >}}
 
 **Step 2:**
+
 ```
 ? Which base version do you want to scaffold from? (Use arrow keys)
 > 1010.0.X (latest)
@@ -80,9 +98,10 @@ This step can also be skipped if the name is provided in the initial command: `c
 > other
 ```
 
-In the second step, the base scaffolding version must be selected. The interface will provide the last GA release (latest), the latest available release (next) and four older GA releases. Additionally a version can be manually entered by selecting the `other` option.
+In the second step, the base scaffolding version must be selected. The interface will provide the CD version (latest), as well as older yearly releases. Additionally a version can be manually entered by selecting the `other` option.
 
 **Step 2 (other):**
+
 ```
 ? Enter the desired version:
 ```
@@ -111,9 +130,9 @@ In the final step, the base project to scaffold from must be selected.
 This step will only show projects which are available for the selected version in Step 2.
 {{< /c8y-admon-info >}}
 
-### Application options
+### Application options {#application-options}
 
-Application options can be defined with ```--app.<option>=<value>```. These will be applied to all applications found with ```[appPaths...]```.
+The application options can be defined with `--app.<option>=<value>`. These will be applied to all applications found with `[appPaths...]`.
 
 ```
     --app.name="My Application"
@@ -122,9 +141,9 @@ Application options can be defined with ```--app.<option>=<value>```. These will
     --app.brandingEntry="./branding/mybranding.less"
 ```
 
-### Webpack options
+### Webpack options {#webpack-options}
 
-Webpack options can be defined with ```--env.<option>=<value>```. These will be directly passed to the webpack configuration.
+The webpack options can be defined with `--env.<option>=<value>`. These will be directly passed to the webpack configuration.
 
 ```
     --env.mode="production"

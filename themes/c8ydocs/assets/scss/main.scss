@@ -1,15 +1,18 @@
 @import "vars";
 @import "reboot";
+@import "utils";
 
 @import "typography";
 @import "btns";
+@import "labels";
 @import "forms";
-@import "font-awesome";
+@import "dlt-c8y-icons";
 @import "c8y-icons";
 @import "layout";
 @import "gsearch";
 @import "nav";
 @import "main-top-bar";
+@import "breadcrumbs";
 @import "dropdown";
 @import "main-content";
 @import "tables";
@@ -18,3 +21,4 @@
 @import "atom";
 @import "device-list";
 @import "admonitions";
+@import "toc";

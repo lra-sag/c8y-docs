@@ -1,9 +1,8 @@
 ---
 weight: 50
 title: Extensible device registration
-layout: redirect
+layout: bundle
 ---
-### Introduction
 
 To address the growing number of IoT protocols and certain restrictions in the general single or bulk device registration, an extensible device registration is available with release 10.15.
 
@@ -17,18 +16,18 @@ There are two possible ways to extend the UI:
 Extensible device registration requires [application extensions](/concepts/applications/#extension-enabling) to be defined, and the microservice to implement the predefined endpoints used for getting device registration metadata and creating the device.
 {{< /c8y-admon-req >}}
 
-### Advantages of extended device registration
+### Advantages of extended device registration {#advantages-of-extended-device-registration}
 
 The extended device registration provides the following advantages:
 
-- **Extensibility of the device registration wizard**: You can easily add own forms to the device registration wizard in the device management UI. The values to be entered in the user-specified forms can be freely customized by the device integration developers.
+- **Extensibility of the device registration wizard**: You can easily add own forms to the device registration wizard in the Device management application UI. The values to be entered in the user-specified forms can be freely customized by the device integration developers.
 
 - **Support for bulk registration using custom CSV**: You can customize the bulk registration and hence implement support for CSV files of a different format.
 
 - **No UI code changes required**: You do not need to write UI Angular code. This keeps the amount of integration work as little as possible. The device integration developer only needs to subscribe a microservice that provides an own wizard, and the wizard shows up automatically.
 
 
-### Extension enabling
+### Extension enabling {#extension-enabling}
 
 As a first step to extend the device registration flow you must define extensions in the application representation.
 
@@ -61,11 +60,9 @@ There are two types of extensions:
 ]
 ```
 
-### Single device registration
+### Single device registration {#single-device-registration}
 
-After enabling the `extensibleDeviceRegistration` extension type, the **Devices** > **Register device** menu in the Device Management application is being extended with an entry corresponding to the extension `name` property:
-
-![Select guide](/images/concepts-guide/extensible-device-registration/register-device-menu-with-extensible-device-reg.png)
+After enabling the `extensibleDeviceRegistration` extension type, the **Devices** > **Register device** menu in the Device management application is extended with an entry corresponding to the extension `name` property.
 
 From now on, everything will be rendered based on data provided via the custom microservice. The added menu entry opens a window which fetches the form definition using the following endpoint:
 
@@ -145,7 +142,7 @@ In the final step all data collected via the wizard will be sent back to the mic
 
 The form is able to send anything defined via JSON Schema to the microservice. The Microservice provides the form definition and is responsible for the proper handling of the submitted data.
 
-#### API specification
+#### API specification {#api-specification}
 
 The device integration microservices must implement the following REST endpoints:
 
@@ -162,20 +159,18 @@ Content-type: application/json
 ```
 Creates a single device based on the collected data. Sends application/json with key-value pairs.
 
-#### Single device registration flow diagram
+#### Single device registration flow diagram {#single-device-registration-flow-diagram}
 
 The following diagram visualizes the single device registration flow:
 
 ![Single diagram](/images/concepts-guide/extensible-device-registration/single-diagram.png)
 
 
-### Bulk device registration
+### Bulk device registration {#bulk-device-registration}
 
 Many device integrations require the registration of many devices at the same time. Currently, all protocols have to rely on the bulk registration mechanism of the platform, which often either requires too many fields or requires custom fields to be added. The latter ones can however so far not be validated, as the core directly creates devices -- and microservices and agents have no control over the properties being written to the managed objects.
 
-After enabling the `extensibleBulkDeviceRegistration` extension type, the Device management > Devices > Register device  `Bulk device registration` modal is being displayed with an extended wizard entry corresponding to the extension `name` property:
-
-![Select guide](/images/concepts-guide/extensible-device-registration/register-device-menu-with-extensible-device-reg.png)
+After enabling the `extensibleBulkDeviceRegistration` extension type, the Device management > Devices > Register device  `Bulk device registration` modal is displayed with an extended wizard entry corresponding to the extension `name` property.
 
 Additionally, the microservice provides the title of the wizard step and example bulk file(s):
 ```json
@@ -199,7 +194,7 @@ As a result the following wizard will be displayed:
 
 ![Select guide](/images/concepts-guide/extensible-device-registration/extensible-bulk-device-reg.png)
 
-#### API specification
+#### API specification {#api-specification}
 
 The device integration microservices must implement the following REST endpoints:
 
@@ -224,14 +219,14 @@ Content-Type: text/csv
 Sends multipart form-data of the csv file type.
 
 
-#### Bulk flow diagram
+#### Bulk flow diagram {#bulk-flow-diagram}
 
 The following diagram visualizes the bulk device registration flow:
 
 ![Bulk diagram](/images/concepts-guide/extensible-device-registration/bulk-diagram-sync.png)
 
 
-### Limitations
+### Limitations {#limitations}
 
 -   The concept does not allow the microservice to hook into deregistrations/decommissioning of a device:
     - Any device integration microservice has to check if a device was deleted, for example to perform garbage collection.

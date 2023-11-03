@@ -1,10 +1,7 @@
 ---
-weight: 20
+weight: 70
 title: Cloud Fieldbus
 layout: bundle
-aliases:
-    - /users-guide/optional-services/#cloud-fieldbus
-    - /devices/netcomm/cloud-fieldbus
-    - /users-guide/cloud-fieldbus
-    - /benutzerhandbuch/cloud-fieldbus-deutsch
+section:
+  - device_management
 ---

@@ -13,6 +13,7 @@
   border-right: $caret-width-base solid transparent;
   border-left:  $caret-width-base solid transparent;
   vertical-align: middle;
+  color: $brand-primary;
 }
 
 // The dropdown wrapper (div)
@@ -20,9 +21,10 @@
   position: relative;
 }
 
-// Prevent the focus on the dropdown toggle when closing dropdowns
 .dropdown-toggle:focus {
-  outline: 0;
+  outline: 2px solid $brand-primary;
+  border-radius: 2px;
+  outline-offset: -1px;
 }
 
 // The dropdown menu (ul)
@@ -34,7 +36,7 @@
   display: none; // none by default, but block on "open" of the menu
   float: left;
   margin: 2px 0 0; // override default ul
-  padding: 5px 0;
+  padding: 0;
   min-width: 160px;
   border: 1px solid $dropdown-fallback-border; // IE8 fallback
   border: 1px solid $dropdown-border;
@@ -44,7 +46,7 @@
   list-style: none;
   text-align: left; // Ensures proper alignment if parent has it changed (e.g., modal footer)
   font-size: $font-size-base;
-  box-shadow: -6px 7px 19px rgba(0,0,0,0.1), -3px 5px 12px rgba(0,0,0,0.1);
+  box-shadow: var(--c8y-elevation-md-bottom);
 
   //.box-shadow(0 6px 12px rgba(0,0,0,.175));
 
@@ -68,9 +70,6 @@
     white-space: nowrap; // prevent links from randomly breaking onto new lines
     font-weight: normal;
     line-height: 1.42857143;
-    &:first-child{
-      box-shadow: inset 0 -1px 0 rgba(black, .1), inset 0 1px 0 rgba(black, .1);
-    }
   }
 }
 
@@ -133,6 +132,11 @@
   // Remove the outline when :focus is triggered
   > a {
     outline: 0;
+  }
+  >.dropdown-toggle{
+    outline: 2px solid $brand-primary;
+    border-radius: 2px;
+    outline-offset: -1px;
   }
 }
 
@@ -201,21 +205,38 @@
   }
 }
 
-
-// Component alignment
-//
-// Reiterate per navbar.less and the modified component alignment there.
-
-// @media (min-width: $grid-breakpoint) {
-//   .navbar-right {
-//     .dropdown-menu {
-//       .dropdown-menu-right();
-//     }
-//     // Necessary for overrides of the default right aligned menu.
-//     // Will remove come v4 in all likelihood.
-//     .dropdown-menu-left {
-//       .dropdown-menu-left();
-//     }
-//   }
-// }
-
+.open>.dropdown-menu-grid,
+.show>.dropdown-menu-grid{
+ width: 320px;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 100px));
+  grid-auto-rows: auto;
+  gap: 2px;
+  padding: var(--c8y-unit-base);
+  li{
+    display: flex;
+    >a{
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-size: var(--c8y-font-size-small);
+      white-space: normal;
+      text-align: center;
+      padding: var(--c8y-unit-base);
+      box-shadow: none;
+      width: 100%;
+      i{
+        font-size: 36px;
+      }
+      &:hover{
+        box-shadow: inset 0 0 0 1px var(--brand-primary,var(--c8y-brand-primary));
+        text-decoration: none;
+      }
+      &.active{
+          box-shadow: inset 0 0 0 2px var(--brand-primary,var(--c8y-brand-primary));
+          text-decoration: none;
+      }
+    }
+  }
+}

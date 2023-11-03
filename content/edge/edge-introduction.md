@@ -1,10 +1,9 @@
 ---
-weight: 10
 title: Introduction
+weight: 10
 layout: bundle
-slug: introduction
-aliases:
-  - /edge/overview
+section:
+  - edge_server
 ---
 
-This document describes conceptual aspects of {{< product-c8y-iot >}} Edge, the single-server variant of the {{< product-c8y-iot >}} platform.
+Learn about the conceptual aspects of {{< product-c8y-iot >}} Edge, the single-server variant of the {{< product-c8y-iot >}} platform.

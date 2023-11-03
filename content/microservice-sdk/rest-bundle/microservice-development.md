@@ -6,8 +6,8 @@ layout: redirect
 
 This section will introduce you to the basic REST endpoints required for developing microservices. You will also learn the basic use cases in which the {{< product-c8y-iot >}} REST APIs can be employed to develop microservice applications.
 
-<a name="creating-application"></a>
-### Creating applications
+
+### Creating applications {#creating-applications}
 
 In order to start working with microservices, an instance of an application must be created on the platform beforehand. It can be done using the following endpoint:
 
@@ -95,7 +95,7 @@ Content-Type: application/vnd.com.nsn.cumulocity.application+json
 }
 ```
 
-### Deploying applications
+### Deploying applications {#deploying-applications}
 
 A microservice application gets available for {{< product-c8y-iot >}} platform users by uploading a binary ZIP file.
 
@@ -112,10 +112,10 @@ The ZIP file must consist of:
 * _image.tar_ - An executable Docker image
 
 
-<a name="acquiring-microservice-credentials"></a>
-### Acquiring microservice credentials
 
-The following section is a wrap up for user management as described under [General aspects](/microservice-sdk/concept) of microservices in {{< product-c8y-iot >}}.
+### Acquiring microservice credentials {#acquiring-microservice-credentials}
+
+The following section is a wrap up for user management as described under [General aspects](/microservice-sdk/general-aspects) of microservices in {{< product-c8y-iot >}}.
 
 Microservice related endpoints require a microservice bootstrap user, which can be obtained by a service provider using:
 
@@ -181,7 +181,7 @@ Response:
 }
 ```
 
-### Subscriptions
+### Subscriptions {#subscriptions}
 
 Subscription in this scope means tenant subscription to a microservice application. The subscription is an important step after deployment.
 When a microservice application is deployed it becomes available for subscription to other tenants. Subscribing to a microservice is the same as subscribing to any other application and it can be done in the Administration application. Also, a tenant can be subscribed employing a POST request:
@@ -247,10 +247,10 @@ Content-Type: application/vnd.com.nsn.cumulocity.applicationusercollection+json
 }
 ```
 
-The response consists of service user credentials dedicated for each tenant. A service user is a user account in the tenant that has the permissions ("roles") that the microservice requested on [registration](#creating-application) time.
+The response consists of service user credentials dedicated for each tenant. A service user is a user account in the tenant that has the permissions ("roles") that the microservice requested on [registration](#creating-applications) time.
 
 
-### Settings
+### Settings {#settings}
 
 The microservice settings are available to microservice users through the authorized bootstrap or service user.
 When using the bootstrap user, all settings are always loaded for the microservice owner.
@@ -276,9 +276,9 @@ Content-Type: application/vnd.com.nsn.cumulocity.option+json;charset=UTF-8;ver=0
 }
 ```
 
-### Basic use cases
+### Basic use cases {#basic-use-cases}
 
-#### Registering assets
+#### Registering assets {#registering-assets}
 
 Assets are the objects that your business and your application focuses on. For example, assets might be buildings and rooms if your business centers around building management or home automation. Or they might be routes and machines, if your business is about servicing machines.
 
@@ -304,7 +304,7 @@ Content-Type: application/vnd.com.nsn.cumulocity.managedobject+json;charset=UTF-
 {
     "owner": "admin",
     "id": "2549800",
-    "self": "http://.../inventory/managedObjects/2549800",
+    "self": "https://.../inventory/managedObjects/2549800",
     "type": "c8y_Building",
     "lastUpdated": "2018-09-05T16:38:31.250+02:00",
     "name": "Building 043",
@@ -336,7 +336,7 @@ POST /inventory/managedObjects/2549800/childAssets HTTP/1.1
 Content-Type: application/vnd.com.nsn.cumulocity.managedobjectreference+json
 {
     "managedObject" : {
-        "self" : "http://.../inventory/managedObjects/2549700"
+        "self" : "https://.../inventory/managedObjects/2549700"
     }
 }
 ```
@@ -356,7 +356,7 @@ Content-Type: application/vnd.com.nsn.cumulocity.managedobject+json; charset=UTF
 {
     "owner": "admin",
     "id": "2549800",
-    "self": "http://.../inventory/managedObjects/2549800",
+    "self": "https://.../inventory/managedObjects/2549800",
     ...
     "childAssets": {
         "references": [
@@ -374,7 +374,7 @@ Content-Type: application/vnd.com.nsn.cumulocity.managedobject+json; charset=UTF
 }
 ```
 
-#### Linking devices to assets
+#### Linking devices to assets {#linking-devices-to-assets}
 
 Just like you link assets to other child assets, you can also link assets to devices that monitor and control the asset. For example, assume that you have a light sensor installed in the room, and that light sensor has the URL "https://.../inventory/managedObjects/2480500". POST to <kbd>childDevices</kbd> of the room as follows:
 
@@ -388,14 +388,19 @@ Content-Type: application/vnd.com.nsn.cumulocity.managedobjectreference+json
 }
 ```
 
-#### Synchronizing assets with external systems
+{{< c8y-admon-info >}}
+You can link multiple child assets or multiple child devices to the same parent in a single request.
+Refer to inventory child operations in the [Inventory API](https://{{< domain-c8y >}}/api/core/#tag/Child-operations) in the {{< openapi >}} for more details.
+{{< /c8y-admon-info >}}
 
-Often, {{< product-c8y-iot >}} will not be the only IT system dealing with a company's asset. The technical procedure for synchronizing assets stored in external IT systems is exactly the same as the [procedure used for registering devices](/device-sdk/rest#device-integration):
+#### Synchronizing assets with external systems {#synchronizing-assets-with-external-systems}
+
+Often, {{< product-c8y-iot >}} will not be the only IT system dealing with a company's asset. The technical procedure for synchronizing assets stored in external IT systems is exactly the same as the [procedure used for registering devices](/device-integration/rest#device-integration):
 
 - Use the Identity API to link the asset ID of the external IT system to the asset ID of {{< product-c8y-iot >}}.
 - Use the Inventory API to create or update the assets in {{< product-c8y-iot >}}'s inventory based on the external system's data.
 
-#### Querying particular capabilities
+#### Querying particular capabilities {#querying-particular-capabilities}
 
 To decouple applications from the specifics of particular types of devices, applications can use fragments to query the inventory (see the Fragments section of [{{< product-c8y-iot >}}'s domain model](/concepts/domain-model)). For example, to find all managed objects having a location, use:
 
@@ -436,13 +441,13 @@ Content-Type: application/vnd.com.nsn.cumulocity.managedobjectcollection+json; c
 }
 ```
 
-Now you could, for example, use the `c8y_Position` property to locate/pin the object on a map. Standard fragments are defined in the [Device management library](/reference/device-management-library/) and in the [Sensor library](/reference/sensor-library/).
+Now you could, for example, use the `c8y_Position` property to locate/pin the object on a map. Standard fragments are defined in the [fragment library](/device-integration/fragment-library/).
 
-Querying the <kbd>/platform</kbd> resource will show you further possibilities for querying your data (see also [Device integration using REST](/device-sdk/rest) in the *Device SDK guide*).
+Querying the <kbd>/platform</kbd> resource will show you further possibilities for querying your data (see also [Device integration using REST](/device-integration/rest)).
 
-Note that queries do not necessarily return all query results at once, but only a page of the results. For more information on paging, refer to [REST implementation > REST usage > Query result paging](https://{{< domain-c8y >}}/api/{{< c8y-current-version >}}/#section/REST-implementation/REST-usage) in the {{< openapi >}}. The optional parameter `withTotalPages` will make the query contain full page statistics at the expense of slightly slower performance.
+Note that queries do not necessarily return all query results at once, but only a page of the results. For more information on paging, refer to [REST implementation > REST usage > Query result paging](https://{{< domain-c8y >}}/api/core/#section/REST-implementation/REST-usage) in the {{< openapi >}}. The optional parameter `withTotalPages` will make the query contain full page statistics at the expense of slightly slower performance.
 
-#### Querying readings from sensors
+#### Querying readings from sensors {#querying-readings-from-sensors}
 
 Similar to the inventory, you can also query for particular sensor readings. For example, you can query the light measurements of the past month (from the time of writing this text) as follows:
 
@@ -479,9 +484,9 @@ Content-Type: application/vnd.com.nsn.cumulocity.measurementcollection+json; cha
 }
 ```
 
-#### Sending operations to devices
+#### Sending operations to devices {#sending-operations-to-devices}
 
-To trigger an operation on a device, POST the operation to the [Device Control API](https://{{< domain-c8y >}}/api/{{< c8y-current-version >}}/#tag/Device-control-API). The following example restarts the device with the ID "2480300" (which is the Raspberry Pi that is integrated in the section [Device integration](/device-sdk/rest#device-integration) of the *Device SDK guide*.
+To trigger an operation on a device, POST the operation to the [Device Control API](https://{{< domain-c8y >}}/api/core/#tag/Device-control-API). The following example restarts the device with the ID "2480300" (which is the Raspberry Pi that is integrated in [Device integration](/device-integration/rest#device-integration).
 
 ```http
 POST /devicecontrol/operations
@@ -524,20 +529,14 @@ Content-Type: application/vnd.com.nsn.cumulocity.operation+json; charset=UTF-8; 
 
 A status of PENDING means here that the device has not yet picked up the operation. EXECUTING means that the device is in the process of executing the operation. Finally, SUCCESSFUL or FAILED indicate that the operation is completed.
 
-#### Listening for events
+#### Listening for events {#listening-for-events}
 
-Besides querying the {{< product-c8y-iot >}} data store, you can also process and receive events in real time as described in [Real-time processing in {{< product-c8y-iot >}}](/concepts/realtime). For example, assume that you would like to display real-time location updates on a map. Use the Administration application (or the [REST API](https://{{< domain-c8y >}}/guides/10.9.0/event-language/real-time-statements/)) to create a new rule module "myRule":
+Besides querying the {{< product-c8y-iot >}} data store, you can also process and receive events in real time. For example, assume that you would like to display real-time location updates on a map.
 
-```sql
-select *
-from EventCreated e
-where e.event.type = "c8y_LocationUpdate";
-```
-
-If you have a device that sends location updates, you should see them immediately in the user interface. To receive them in your own REST client, you can use the [Notification API](https://{{< domain-c8y >}}/api/{{< c8y-current-version >}}/#tag/Real-time-notification-API) to subscribe to them. The API is based on the Bayeux protocol using HTTPS long-polling. The restrictions that apply are described in [Real-time notifications](https://{{< domain-c8y >}}/api/{{< c8y-current-version >}}/#tag/Real-time-notification-API) in the {{< openapi >}}. First, a handshake is required. The handshake tells {{< product-c8y-iot >}} what protocols the client supports for notifications and allocates a client ID to the client.
+If you have a device that sends location updates, you should see them immediately in the user interface. To receive them in your own REST client, you can use the [Notification API](https://{{< domain-c8y >}}/api/core/#tag/Real-time-notification-API) to subscribe to them. The API is based on the Bayeux protocol using HTTPS long-polling. The restrictions that apply are described in [Real-time notifications](https://{{< domain-c8y >}}/api/core/#tag/Real-time-notification-API) in the {{< openapi >}}. First, a handshake is required. The handshake tells {{< product-c8y-iot >}} what protocols the client supports for notifications and allocates a client ID to the client.
 
 ```http
-POST /cep/notifications
+POST /notification/realtime
 Content-Type: application/json
 ...
 [ {
@@ -560,16 +559,17 @@ HTTP/1.1 200 OK
 }]
 ```
 
-After the handshake, the client needs to subscribe to the output of the above rule. This is done using a POST request with the module name and the statement name as subscription channel. In our example, we used the module name "myRule" and did not give a name to the `select` statement ("@Name('')"), so the subscription channel is "/myRule/\*".
+After the handshake, the client must subscribe to the particular device channel or all devices channel (*). This is done using a POST request with the name of the channel.  
+For example, if you want to receive notifications about events from the device with internal ID "24800", the subscription channel is "/events/24800".
 
 ```http
-POST /cep/notifications
+POST /notification/realtime
 Content-Type: application/json
 ...
 [ {
     "id": "2",
     "channel": "/meta/subscribe",
-    "subscription": "/myRule/*",
+    "subscription": "/events/24800",
     "clientId": "71fjkmy0495rxrkfcmp0mhcev1"
 }]
 
@@ -578,7 +578,7 @@ HTTP/1.1 200 OK
 [ {
     "id":"2",
     "channel": "/meta/subscribe",
-    "subscription": "/myRule/*",
+    "subscription": "/events/24800",
     "successful": true,
 } ]
 ```
@@ -586,7 +586,7 @@ HTTP/1.1 200 OK
 Finally, the client connects and waits for events to be sent to it.
 
 ```http
-POST /cep/notifications HTTP/1.1
+POST /notification/realtime HTTP/1.1
 Content-Type: application/json
 ...
 [ {
@@ -604,15 +604,15 @@ HTTP/1.1 200 OK
 ...
 [
     {
-        "id": "139",
+        "id": "3",
         "data": {
             "creationTime": "...",
             "id": "2481400",
             "self": "https://.../event/events/2481400",
             "source": {
-                "id": "2480700",
+                "id": "24800",
                 "name": "RaspPi BCM2708 0000000017b769d5 Gps eM9",
-                "self": "https://.../inventory/managedObjects/2480700"
+                "self": "https://.../inventory/managedObjects/24800"
             },
             "text": "Location updated",
             "time": "...",
@@ -622,11 +622,15 @@ HTTP/1.1 200 OK
                 "lng": 6.769717,
                 "lat": 51.267259
             },
-            "channel": "/myRule/*"
+            "channel": "/events/24800"
         },
-        "id": "3",
         "successful": true,
         "channel": "/meta/connect"
     }
 ]
 ```
+
+{{< c8y-admon-info >}}
+A channel for all devices (*) is deprecated and should be avoided. Subscription on this channel may cause performance issues
+on both the client and the server side, and this option may be removed in future versions of {{< product-c8y-iot >}}.
+{{< /c8y-admon-info >}}

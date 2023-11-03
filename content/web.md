@@ -1,8 +1,14 @@
 ---
-title: Web SDK guide
-bundle: web
-icon: "c8y-icon c8y-icon-smart-rest"
+title: Web SDK
+icon: "c8y-icon c8y-icon-tools"
 type: root
-layout: root
-weight: 90
+layout: redirect
+section:
+  - app_enablement
+bundle: web
+audience:
+  - Developers
+weight: 20
 ---
+
+Discover how to develop web applications using the Web SDK and integrate default or branded UI components into your custom application.

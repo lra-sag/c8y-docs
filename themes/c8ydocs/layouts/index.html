@@ -1,13 +1,28 @@
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>{{.Permalink}}</title>
-    <link rel="canonical" href="{{.Permalink}}"/>
-    <meta name="robots" content="noindex">
-    <meta http-equiv="content-type" content="text/html; charset=utf-8"/>
-    <meta http-equiv="refresh" content='0; url={{.Site.Params.guidesRedirect}}'/>
-  </head>
-  <body>
-    Redirecting…
-  </body>
-</html>
+{{ define "main" }}
+<main>
+  <div class="home-top">
+    <section class="home-top__content">
+        <h1>{{replace (replace (replace .Title "var-company-sag" .Site.Params.company_sag) "var-enterprise-tenant" .Site.Params.enterprise_tenant)  "var-product-c8y-iot" .Site.Params.product_c8y_iot}}</h1>
+        <p>{{replace (replace (replace .Site.Params.description "var-company-sag" .Site.Params.company_sag) "var-enterprise-tenant" .Site.Params.enterprise_tenant)  "var-product-c8y-iot" .Site.Params.product_c8y_iot}}</p>
+    </section>
+    {{- partial "home-illustration.html" . -}}
+  </div>
+{{ $sections := .Site.Taxonomies.section }}
+{{ $sortedsections := sort $sections ".Page.Params.weight" }}
+<div class="home-grid">
+  {{ range $sortedsections }}
+    {{ $pages := where .Pages "Type" "!=" "page" }}
+    {{ $page := index $pages 0 }}
+
+    <a href='{{.Page.Permalink}}' class="product-card">
+      <div class="product-card__header">
+        <i class="c8y-icon-duocolor {{.Page.Params.icon}}"></i>
+        <h2>{{.Page.Title}}</h2>
+      </div>
+        {{.Page.Content}}
+    </a>
+  {{ end }}
+</div>
+</main>
+{{- partial "footer.html" . -}}
+{{ end }}

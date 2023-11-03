@@ -1,5 +1,10 @@
 ---
-weight: 20
+title: Asset models
 layout: bundle
-title: Asset types
+outputs:
+  - html
+  - json
+section:
+  - app_enablement
+weight: 30
 ---

@@ -1,11 +1,9 @@
 ---
-weight: 35
 title: Real-time processing
 layout: bundle
-aliases:
-  - /concepts-guide/real-time-processing-in-cumulocity
-  - /concepts-guide/real-time-processing-in-cumulocity.html
-  - /konzepte/echtzeit
+section:
+  - getting_started
+weight: 50
 ---
 
 {{< product-c8y-iot >}} allows developers and power users to run real-time IoT business logic inside {{< product-c8y-iot >}} based on a high-level real-time processing language.

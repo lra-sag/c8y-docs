@@ -30,13 +30,7 @@ With the above command, the key pass is set to the same value as the keystore pa
 
 ![terminal](/images/device-protocols/opcua/opcua-terminal.png)
 
-The keystore can then be verified by using a tool like KeystoreExplorer.
-
-![Keystore explorer](/images/device-protocols/opcua/opcua-keystore-explorer1.png)
-
-![Keystore explorer2](/images/device-protocols/opcua/opcua-keystore-explorer2.png)
-
-The keystore can then be uploaded as binary in {{< product-c8y-iot >}} and it can be used in the server configuration.
+The keystore can be verified by using a tool like KeystoreExplorer. It can then be uploaded to {{< product-c8y-iot >}} as a binary and used in the server configuration.
 
 ![Opcua Keystore](/images/device-protocols/opcua/opcua-keystore.png)
 
@@ -48,21 +42,24 @@ If you don't have the certificate trusted by your OPC UA server, the server will
 Beside the above authentication certificate, the device gateway also automatically creates a so-called application identity certificate to identify itself with the OPC UA server. This needs to be trusted by the OPC UA server as well.
 {{< /c8y-admon-info >}}
 
-### Child devices
+### Child devices {#child-devices}
 
 All server connections are listed as child devices even if the servers are disconnected. To stop a server connection, either delete the server child device or disable/remove the connection from the **OPC UA server** tab.
 
 ![Gateway child devices](/images/device-protocols/opcua/opcua-server-child-device.png)
 
-### Address space
+### Address space {#address-space}
 
 When you navigate to the child device of the gateway, the **Address space** tab shows the attributes and references of the address space node of the servers. The filter searches through the whole hierarchy to find "nodeId", "browserName" or "displayName" of an attribute. In case of multiple "ancestorNodeIds", you can click on the desired node to be redirected.
 
 The address space is automatically scanned when a connection between the gateway and the server is established. The duration of the scan depends on the size of the address space. The address space information is stored locally once it is scanned and then used by this applying process. If the address space information is not yet available, for example, the address space has not been scanned, another scan will be triggered without synchronizing data into {{< product-c8y-iot >}}. Performing another address space operation will update the address space information.
 
+In case a node cannot be read, the scan process skips this node and continues.
+An error entry is written to the opcua-device-gateway log file to provide information (more information available in debug level).
+
 ![Gateway events tab](/images/device-protocols/opcua/opcua-address.png)
 
-### Monitoring measurements
+### Monitoring measurements {#monitoring-measurements}
 
 On the gateway device, the **Measurements** tab provides visualization of data in the form of charts. In total the gateway contains the following six charts:
 
@@ -113,7 +110,7 @@ On the gateway device, the **Measurements** tab provides visualization of data i
 
 ![Gateway measurements tab](/images/device-protocols/opcua/opcua-gateway-memory.png)
 
-#### Monitoring measurement details
+#### Monitoring measurement details {#monitoring-measurement-details}
 
 The following is the full list of monitoring measurements created by the gateway:
 
@@ -266,7 +263,7 @@ The following is the full list of monitoring measurements created by the gateway
 </tbody>
 </table>
 
-### Monitoring alarms
+### Monitoring alarms {#monitoring-alarms}
 
 On the gateway device, the **Alarms** tab shows all alarms raised either on the gateway or on the servers.
 
@@ -278,7 +275,7 @@ There are three alarm types which can be raised:
 
 ![Gateway alarms tab](/images/device-protocols/opcua/opcua-alarms.png)
 
-#### Monitoring alarm details
+#### Monitoring alarm details {#monitoring-alarm-details}
 
 The following is the full list of monitoring alarms created by the gateway:
 
@@ -338,13 +335,13 @@ The following is the full list of monitoring alarms created by the gateway:
 </tbody>
 </table>
 
-### Monitoring events
+### Monitoring events {#monitoring-events}
 
 On the gateway device, the **Events** tab shows all events related to the gateway-server connection. Additionally, you can see when the gateway has started and when it ends.
 
 ![Gateway events tab](/images/device-protocols/opcua/opcua-events.png)
 
-#### Monitoring event details
+#### Monitoring event details {#monitoring-event-details}
 The following is the full list of monitoring events created by the gateway:
 <table>
 <colgroup>

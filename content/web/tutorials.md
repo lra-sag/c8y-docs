@@ -2,12 +2,8 @@
 weight: 60
 title: Tutorials
 layout: bundle
-aliases:
-  - /web/how-to
-  - /web/troubleshooting-bundle/3rdparty-library.md
-  - /web/troubleshooting-bundle/dont-run.md
-  - /web/troubleshooting-bundle/error-in-tenant.md
-  - /web/troubleshooting.md
+section:
+  - app_enablement
 ---
 
 This section lists common how-to recipes for the Web SDK. It requires:

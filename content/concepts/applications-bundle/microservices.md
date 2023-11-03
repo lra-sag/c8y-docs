@@ -1,7 +1,7 @@
 ---
 weight: 30
 title: Microservices
-layout: redirect
+layout: bundle
 ---
 
 Microservices are server-side applications. Microservices can be used to develop for example the following functionality on top of {{< product-c8y-iot >}}:
@@ -19,8 +19,4 @@ The hosting of the microservice is provided by {{< product-c8y-iot >}}. This way
 
 ![microservice_infrastructure](/images/concepts-guide/microservice_infrastructure.png)
 
-For detailed information on developing and deploying microservices on top of {{< product-c8y-iot >}} refer to the [Microservice SDK guide](/microservice-sdk/introduction) which provides information on the general concept of microservices in {{< product-c8y-iot >}} as well as specific guidance and examples for various programming languages.
-
-{{< c8y-admon-info >}}
-For Microservice developers {{< company-c8y >}} provides Microservice SDK in [Java programming language](/microservice-sdk/java) and [C# programming language](/microservice-sdk/cs) for .Net Core. Refer to the relevant sections in the [Microservice SDK guide](/microservice-sdk/introduction).
-{{< /c8y-admon-info >}}
+For detailed information on developing and deploying microservices on top of {{< product-c8y-iot >}} refer to [Microservice SDK](/microservice-sdk/microservice-sdk-introduction/) which provides information on the general concept of microservices in {{< product-c8y-iot >}} as well as specific guidance and examples for various programming languages. For microservice developers {{< company-c8y >}} provides a Microservice SDK in the [Java programming language](/microservice-sdk/java).

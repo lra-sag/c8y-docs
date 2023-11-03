@@ -1,56 +1,92 @@
 ---
-weight: 30
+weight: 40
 title: Viewing assets
 layout: redirect
 ---
 
-Once the [asset hierarchy](/dtm/asset-hierarchy/#asset-hierarchy) is created by adding assets, they can be viewed by clicking the parent asset.
+Once the [asset hierarchy](/dtm/asset-hierarchy/#asset-hierarchy) is created by adding assets, they can be viewed in the **Assets** page.
 
+### To view an asset {#to-view-an-asset}
 
-<a name=""></a>
-### To view an asset
+1. Select an asset from the hierarchy on the **Assets** page.
 
-1. Select an asset.
+2. The **Subassets** page contains the asset details, created and last updated time displayed at the top right.
 
-2. The **Subassets** page contains the asset details, created and last updated at the time displayed at the top right.
-
-3. Optionally [add child assets](/dtm/asset-hierarchy/#add-child-assets), [assign devices](/dtm/asset-hierarchy/#assign-devices-to-asset) or [import assets](/dtm/asset-hierarchy/#creating-assets-bulk-import) from the top bar.
+3. Optionally [assign devices](/dtm/asset-hierarchy/#to-assign-devices-to-an-asset) from the top bar.
 
 4. The asset name and description along with the icon are displayed at the top.
 All subassets and devices for this asset will get listed in the **Subassets** section.
 
-5. All the custom properties for this asset will be displayed on the right.
+5. All the asset properties for this asset will be displayed on the right.
 
+6. In the **Asset tree** tab you see the asset hierarchy.
 
-<a name=""></a>
-#### To view an asset hierarchy
+7. Optionally [add subassets](/dtm/asset-hierarchy/#to-add-subassets), or [import assets](/dtm/asset-hierarchy/#creating-assets-bulk-import) using the options on the top right.
 
-To view an asset hierarchy:
+If the asset has a location, you can view it on the map under the properties section below its values. Click the full screen icon at the top right corner of the map to view it in full screen.
 
-1. Click the asset and scrolling down.
+{{< c8y-admon-info>}}
+The buttons [Import assets](/dtm/asset-hierarchy/#creating-assets-bulk-import), and [Add asset](/dtm/asset-hierarchy/#to-add-subassets) are not visible for the last hierarchical level.<br>
+If you edit an asset property or an asset model associated with the selected asset, you see a warning icon next to the asset model name.<br>
+You see a warning message if one or more properties associated with the asset are not present.
+{{< /c8y-admon-info>}}
 
-2. When you click the subassets, their child asset hierarchy is displayed. This way, you can view the entire hierarchy.
-
-3. You can also view the hierarchy and navigate to the particular asset using the navigator on the left. Expand the hierarchy in the navigation and select the desired asset to view the asset details.
-
-
-<a name=""></a>
-### To modify an asset
+### To modify an asset {#to-modify-an-asset}
 
 Fields are marked editable by an edit icon.
-To modify any of the asset details, click the edit icon, enter new details and save.
+To modify any of the asset details, click the edit icon, enter new details and save.<br>
+For an asset with a location, click or drag the marker to the preferred position to select the value for latitude and longitude on the map. Click the full screen icon at the top right corner of the map to enter full screen mode.
 
-
-<a name=""></a>
-### To delete an asset
+### To delete an asset {#to-delete-an-asset}
 
 To delete a subasset or device in the hierarchy:
 
 1. Click the delete icon next to it.
 
     {{< c8y-admon-info>}}
+
 The delete icon appears on hover of each row under the subassets section.
     {{< /c8y-admon-info>}}
 
-2. In the resulting confirmation dialogue, click **Confirm** to continue or **Cancel** to cancel the deletion.
-3. Optionally select the checkbox in the confirmation dialogue to delete all the subassets and devices for the selected asset.
+In the following dialog box, click **Confirm** to continue.
+Optionally select the checkbox in the dialog box to delete all subassets and devices for the selected asset.
+
+### To search for an asset {#to-search-for-an-asset}
+
+You can search for assets through the **Search** button at the right of the top bar.
+Enter a search term into the textbox at the top of the **Search** window to see all assets matching the search criteria in the section **Search results**.
+
+To see more details click **Go to the asset data table** at the bottom. This will show the entire search results in a table format.
+
+The **Search** page only shows a limited number of matches. In case of more matches, switch to the asset data table to see the complete results.
+
+![assets-search](/images/dtm/assets/dtm-assets-search-assets.png)
+
+{{< c8y-admon-important >}}
+The search results include all assets containing the search term in any property (name, model or any fragment), that is, the search results do not only include assets matching the search criteria with their names.
+{{< /c8y-admon-important >}}
+
+The DTM application extends the full text search capability of {{< product-c8y-iot >}} for searching assets. See [Search and filter functionality](/get-familiar-with-the-ui/gui-features/#search-and-filter-functionality) to know more about available search options.
+
+### To move assets {#to-move-assets}
+
+Use the assets move feature to relocate assets within hierarchies. To move one or more assets, follow the steps below:
+
+1. Select one or more assets of same type in the **Assets** page to move.
+2. Click **Move selected** in the top banner.
+3. In the resulting dialog, you see a list of assets which allow selected assets as its children. Click the radio button to the left of each asset to select it.
+4. Click **Move** to complete the relocation.
+
+{{< c8y-admon-info >}}
+Only a maximum of 10 assets can be moved at a time.
+
+The **Move selected** option in the banner is disabled in the following scenarios:
+
+* One or more root assets are selected.
+* Assets of different asset models are selected. Only assets of same asset model can be moved.
+* The selected asset's asset model is no longer a child of its parent asset model.
+* One or more assets with the same name are selected.
+
+{{< /c8y-admon-info >}}
+
+![Asset movement](/images/dtm/assets/dtm-assets-move-assets.png)

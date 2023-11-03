@@ -1,50 +1,88 @@
 ---
-weight: 40
-layout: bundle
 title: Localization
+layout: bundle
+outputs:
+  - html
+  - json
+section:
+  - app_enablement
+weight: 50
+helpcontent:
+- label: localization
+  title: Localization
+  content: "
+  Use the **Localization** feature to add translations for asset properties or asset models, as well as to add custom translations for the existing static text in the DTM application.
+
+
+   Once you created all asset properties and asset models, their names are added as keys in the **Localization** page. You can add further translations as required.  
+
+
+   To add a new translation, click **Add term** on the top menu bar. In the resulting dialog box, add the name of the key, followed by the translation in the respective field.
+
+
+   Note that to use this feature, your tenant must have the Public-options application installed."
 ---
 
-{{< c8y-admon-related >}}
-* [Subscribed applications](/users-guide/administration/#subscribed-applications) for more information on how to access the DTM application in your tenant.
-
-{{< /c8y-admon-related >}}
-
 {{< c8y-admon-req >}}
-* Subscribed to [Feature branding](/users-guide/enterprise-tenant/#branding) in the [Enterprise tenant](/users-guide/enterprise-tenant/#overview).
+* To view the **Localization** page: READ permission for permission type "Application management"
+
+* To add/update/delete localization identifiers: ADMIN permission for permission type "Application management"
+
+* Your user must have a role with READ permission for the permission type "Application management". See [Managing permissions](/standard-tenant/managing-permissions/) for more information.
+
+* Your tenant must have the Public-options application installed, see details below.
 {{< /c8y-admon-req >}}
 
-<a name=""></a>
-### Localization feature
+### To use the localization feature {#to-use-the-localization-feature}
+Since the localization feature uses dynamically fetched application options, your tenant must have the Public-options application installed. Install the Public-options application manually or, as a workaround, apply the branding setting which installs the Public-options application behind the scenes.
 
-The **Localization** feature is provided in the DTM application. To use this feature, subscribe to [Feature branding](/users-guide/enterprise-tenant/#branding) in the [Enterprise tenant](/users-guide/enterprise-tenant/#overview). Once you have enabled it, open the **Localization** page in the navigator.
+For details on how to manually install the Public-options application, see [Branding and language customization](/web/application-configuration/#branding-languages-customization).
 
-Additionally, if you want to add translations for the [custom property](/dtm/asset-types/#property-library) or [asset types](/dtm/asset-types/#asset-types) created, or if you want to add custom translations for the existing static text in the DTM application, same can be done using the **Localization** feature.
+#### To apply the branding setting {#to-apply-the-branding-setting}
+To apply the branding setting, you must first subscribe to the [Branding feature](/enterprise-tenant/customization/#branding) in the [{{< enterprise-tenant >}} ](/enterprise-tenant/enterprise-tenant-introduction/).
 
-![Main view localization page](/images/dtm/localization/dtm-localozation-main-page.png)
+Complete the setup in the Administration application following the steps below:
 
-Initially, the **Localization** page will show a row called **Group** as key. If necessary, add a translation for "Group" according to the explanation above.
+1. Navigate to **Settings > Branding**.
+2. Click **Apply**.
+3. Navigate to **Ecosystem > Applications** to verify that the Public-options application is installed correctly.
 
-Once you create all custom properties and asset types, then all those names are added as keys in the **Localization** page. You can further add the translations as required.
+{{<c8y-admon-info>}}
+You must have administrator access to the tenant to install the Public-options application.
+{{</c8y-admon-info>}}
+
+### Localization {#localization}
+
+To open the **Localization** page, navigate to **Configuration > Localization**.
+
+If you want to add translations for the created [asset properties](/dtm/asset-types/#property-library) or [asset models](/dtm/asset-types/#asset-types), or if you want to add custom translations for the existing static text in the DTM application, use the **Localization** feature.
+
+![Main view localization page](/images/dtm/localization/dtm-localization-main-page.png)
+
+Once you create an asset property or an asset model, their names are added automatically as keys in the **Localization** page. You can further add the translations as required.
+
+{{< c8y-admon-info>}}
+Note that if an asset property or asset model is present, the corresponding entry on the **Localization** page cannot be deleted. However, if no translation exists for the asset property or asset model, deleting the asset property or asset model will automatically remove the corresponding entry.
+
+On the other hand, if a translation exists for the asset property or asset model, deleting it will not automatically remove the corresponding entry. In such cases, a delete option will be available for that specific translation, allowing you to manually delete the entry.
+{{< /c8y-admon-info>}}
 
 To add a new translation in the DTM application, you can add the text as key and add the translations as required.
 
+Click **Apply** to apply the changes.
 
-<a name=""></a>
-### To add new keys for translations
+### To add new keys for translations {#to-add-new-keys-for-translations}
 
 Add new keys and their respective translations using the **Add term** option on the top right.
 
-
-![localization-add-term](/images/dtm/localization/dtm-localization-add-term.png)
-
-
-Fill all the mandatory fields in the dialog window and click **Save**. The new key is saved including the added translations.
+Fill all the mandatory fields in the **Add term and translations** dialog and click **Save**. The new key is saved including the added translations.
 
 Next, click **Apply** to apply the changes.
 
 
-<a name=""></a>
-### To add and edit translations
+![localization-add-term](/images/dtm/localization/dtm-localization-add-term.png)
+
+### To add and edit translations {#to-add-and-edit-translations}
 
  You can add or edit translations for all the keys in two ways:
 
@@ -55,20 +93,17 @@ Next, click **Apply** to apply the changes.
 
 or:
 
-1. Click the edit icon in each row to open the dialog window **Edit term translations**.
+1. Click the edit icon in each row to open the **Edit term translation** dialog.
 2. Add or edit the translation for any language.
 3. Click **Save**.
 
-Add or modify the translation for any language in {{< product-c8y-iot >}}.
+Click **Apply** to apply the changes.
 
-Once all your translations are done, change the language under **User settings**. For more information see [Getting started > User options and settings > To change user settings](/users-guide/getting-started/#gui-features) in the *User guide*.
-
-
-The added translations are now displayed in the DTM application.
-
-To change the language for the DTM application click the **User settings** option under [User button](/users-guide/getting-started/#gui-features) and select the desired language in the dropdown menu. You need to refresh your screen for the application to display the newly selected language.
+Once all your translations are done, you can change the language under **User settings** to see the translations in action. For more information see [To change user settings](/get-familiar-with-the-ui/user-settings/#to-change-user-settings).
 
 
 {{< c8y-admon-info>}}
-The added translations for asset type and custom property will only show up in the **Assets** page. Translations are currently available for English and German.
+The added translations for an asset model or an asset property is seen only in the **Assets** page.
+
+Translations for other static text of the DTM application are currently available for English and German.
 {{< /c8y-admon-info>}}

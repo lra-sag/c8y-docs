@@ -1,5 +1,7 @@
 ---
-weight: 50
-layout: bundle
 title: Administration
+layout: bundle
+section: 
+  - app_enablement
+weight: 50
 ---

@@ -1,7 +1,8 @@
 ---
 weight: 20
 title: Physical security
-layout: redirect
+layout: bundle
+
 ---
 
 Physical security of IT systems prevents unauthorized physical access to servers, storage, and network devices.

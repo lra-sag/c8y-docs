@@ -1,7 +1,9 @@
 ---
-weight: 10
 title: Overview
-layout: redirect
+layout: bundle
+weight: 10
+section: 
+  - platform_administration
 ---
 
 Tenants are physically separated data spaces with a separate URL, with a specific set of users, a separate application management and no data sharing by default. Users in a single tenant share the same URL and the same data space.

@@ -4,7 +4,7 @@ title: Device protocols
 layout: redirect
 ---
 
-### Adding a new device protocol
+### Adding a new device protocol {#adding-a-new-device-protocol}
 
 1. In the Device protocols page, click **New device protocol** in the top menu bar and select OPC UA as device protocol type.
 
@@ -21,7 +21,7 @@ Selecting a reference server will require you to select a reference node.
 
 Once the device protocol is created, various configuration settings such as variables, data reporting and constraints can be applied. Initially, the device protocol will be inactive. When active, the gateway will scan the address space of all servers and will automatically apply the device protocol to all nodes which match the criteria. When the device protocol is configured, click **Save**.
 
-### Adding a new variable
+### Adding a new variable {#adding-a-new-variable}
 
 1. Click **Add variable** under the **Variables** section.
 2. Enter the path and the name of the variable. The path can be the exact browse path or a regular expression of the browse path. If it is a regular expression, it must be wrapped inside *regex(...)*. For example: `regex(2:Objects)` or `regex(urn:test.namespace:Objects\\d)`. Note that the namespace index and the namespace URI are not part of the regular expression itself but they will be quoted as literal strings.
@@ -86,7 +86,7 @@ The value will also be populated as a fragment of the created event, under a sta
 {
  "type": "com_cumulocity_model_DoorSensorEvent",
  "text": "Door sensor was triggered",
- "c8y_ua_DataValue": {
+ "c8y_ua_DataValue": {
      "serverTimestamp": 132403410091850000,
      "sourceTimestamp": 132403410091850000,
      "value": {
@@ -152,11 +152,11 @@ Below there is an example of a full device protocol that configures a custom act
 }
 ```
 
-### Monitoring events for device protocol application
+### Monitoring events for device protocol application {#monitoring-events-for-device-protocol-application}
 
 When a device protocol has been applied to or un-applied from a node, a monitoring event is generated as the following:
 
-#### Device type has been applied
+#### Device type has been applied {#device-type-has-been-applied}
 
 - Event type - c8y_ua_DeviceTypeApplied
 - Event text - *Device type: {device type ID} is applied to root node: {root node ID} of server: {server ID}*
@@ -164,7 +164,7 @@ When a device protocol has been applied to or un-applied from a node, a monitori
 
 ![OPC UA device protocol applied](/images/device-protocols/opcua/opcua-device-protocol-applied.png)
 
-#### Device type has been un-applied
+#### Device type has been un-applied {#device-type-has-been-un-applied}
 
 - Event type - c8y_ua_DeviceTypeUnapplied
 - Event text -
@@ -175,30 +175,22 @@ When a device protocol has been applied to or un-applied from a node, a monitori
 
 ![OPC UA device protocol un-applied](/images/device-protocols/opcua/opcua-device-protocol-unapplied.png)
 
-#### Custom action retry mechanism on external server failure
+#### Custom action retry mechanism on external server failure {#custom-action-retry-mechanism-on-external-server-failure}
 
 If a custom action fails, a retry mechanism will be processed. This is configured in the application YAML file, and the queues will be stored in the event repository.
 
-Queues are collections of failed custom actions, including the complete HTTP request of this custom action. Each entry of the queue is one failed custom action. The collection has a defined size in _failedCustomActionQueueSize_ and a maximum number of retries in _maxRetries_.  
+Queues are collections of failed custom actions, including the complete HTTP request of this custom action. Each entry of the queue is one failed custom action.
 
 A background scheduler task will retry each queue up to the number of _maxRetries_. If _maxRetries_ is reached the queue will be stored as a permanently failed queue in the event repository.
 
-All elements of the queue will be retried, so the count of the elements in the queue will be decreasing with each successful retried custom action. These queues are also timing out when the reach they _pendingMaxAge_ to reduce the load of the scheduler task.
+All elements of the queue are retried after the retry delay has passed. In effect, the count of the elements in the queue is decreases with each successful retried custom action.
 
-The following parameters can be set:  
+This mechanism can be configured in the configuration section `gateway.mappingExecution.http.failureHandling` (see also [Additional customization](#additional-customizations)) using the following properties:
 
-In the section _mappingExecution_ - _http_ - _failureHandling_  
 
-- enabled[boolean] - Activate or deactivate the fail over for custom actions, default is true.
-
-- flushQueueDelay[seconds] - Time until a queue will be cleared automatically, default is 60.
-
-- reScheduleDelay[seconds] - Time until the stored queues will be rescheduled, should be higher than _flushQueueDelay_ and not a multiple value of _flushQueueDelay_, default is 150.
-
-- reScheduleElements[number] - Number of queues loaded for retry at the same time, default is 100.
-
-- failedCustomActionQueueSize[number] - Size of maximum elements in one queue; if the limit is reached the queue will be saved, default is 100.
-
-- maxRetries[number] - Number of retries for failed queues; if the maximum is reached the queue will be saved as permanently failed and never retried again, default is 5.
-
-- pendingMaxAge[seconds] - Queues with a timestamp older than this will not be retried regardless of the retry status, default is 86400 .
+|<div style="width:200px">Setting</div>|Default|Value format|Example |Description|																				
+|-----------|-----|-----------|--------|-----------|
+|enabled  | true | boolean (true/false) | true | Activate or deactivate the fail over for custom actions |
+|maxRetries| 5| number | 5 | Number of retries for failed queues. If the maximum is reached the queue is saved as permanently failed and never tried again. Default is 5.|
+|noRetryHttpCodes| empty | Comma-separated list of HTTP response codes | 400,500 |  If retries are enabled (failureHandling.enabled=true), this setting allows retries to be skipped for certain HTTP response codes. In the given example requests that have received a `400 Bad Request` or a `500 Internal server error` response will not be retried.
+|retryDelay|120| number| 120 | Minimum delay in seconds between two retries of the same request.|

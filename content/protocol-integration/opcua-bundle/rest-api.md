@@ -8,9 +8,9 @@ While the {{< product-c8y-iot >}} user interface for OPC UA provides an easy and
 
 The full API definitions can be found at */service/opcua-mgmt-service/swagger-ui.html*.
 
-### OPC UA server resources
+### OPC UA server resources {#opc-ua-server-resources}
 
-#### Connect a new OPC UA server to the gateway
+#### Connect a new OPC UA server to the gateway {#connect-a-new-opc-ua-server-to-the-gateway}
 
 **Endpoint**
 
@@ -229,7 +229,16 @@ There are three alarm statuses in {{< product-c8y-iot >}}, namely ACTIVE, ACKNOW
 which means any change in the address space nodes of the OPC UA server in runtime will not automatically be updated in the address space of {{< product-c8y-iot >}}.
 This property must be explicitly set to "true" to detect and persist the address space changes on runtime. </td>
 </tr>
+<tr>
+<td>validateDiscoveredEndpoints</td>
+<td>Boolean</td>
+<td>no</td>
+<td>
+The protocol stack of the OPC UA gateway validates whether the endpoint it is connecting to is present in the list of endpoints returned by the OPC UA server. By default, this validation is enabled (true). However, a setting in the server configuration can override the global gateway configuration setting, which can be configured using <code>gateway.connectivity.validateDiscoveredEndpoints</code>.
 
+We strongly recommend you to keep this validation enabled unless there are compelling reasons to disable it. Disabling the endpoint validation should only be done when absolutely necessary.
+</td>
+</tr>
 </tbody>
 </table>
 
@@ -270,7 +279,7 @@ It's used to calculate the local file size bound to the entry size.
     maxBloatFactor: 5.0
   ```
 
-#### Get all servers of a gateway device
+#### Get all servers of a gateway device {#get-all-servers-of-a-gateway-device}
 
 **Method**
 
@@ -337,7 +346,7 @@ It's used to calculate the local file size bound to the entry size.
 ]
 ```
 
-#### Delete and disconnect an OPC UA server
+#### Delete and disconnect an OPC UA server {#delete-and-disconnect-an-opc-ua-server}
 
 **Endpoint**
 
@@ -376,9 +385,9 @@ The service will retain all the child devices of the server, and their correspon
 
 `200 OK`
 
-### Address space resources
+### Address space resources {#address-space-resources}
 
-#### Get an address space node by ID
+#### Get an address space node by ID {#get-an-address-space-node-by-id}
 
 **Endpoint**
 
@@ -469,7 +478,7 @@ Endpoint: `GET /service/opcua-mgmt-service/servers/10/address-spaces/get?nodeId=
 }
 ```
 
-#### Get children of a given node
+#### Get children of a given node {#get-children-of-a-given-node}
 
 **Endpoint**
 
@@ -565,7 +574,7 @@ Endpoint: `GET /service/opcua-mgmt-service/servers/10/address-spaces/children?no
 ]
 ```
 
-#### Browse a node
+#### Browse a node {#browse-a-node}
 
 **Endpoint**
 
@@ -666,11 +675,11 @@ Endpoint: `GET /service/opcua-mgmt-service/servers/10/address-spaces/browse?node
 ]
 ```
 
-### Device type resources
+### Device type resources {#device-type-resources}
 
 These resources provide the APIs for manipulating device types.
 
-#### Creating a new device type
+#### Creating a new device type {#creating-a-new-device-type}
 
 **Endpoint**
 
@@ -850,7 +859,7 @@ Full payload data structure explained:
 <td>processingMode</td>
 <td>string</td>
 <td>no</td>
-<td>Define the {{< product-c8y-iot >}} processing mode for incoming data. Refer to <a href="https://{{< domain-c8y >}}/api/{{< c8y-current-version >}}/#section/REST-implementation/HTTP-usage"> <b>HTTP usage > Process mode</b></a> in the {{< openapi >}} for more information. Possible values: PERSISTENT, TRANSIENT, QUIESCENT, CEP. Default is PERSISTENT. Note that for the alarm mappings, only the PERSISTENT mode is supported regardless what is being given here.</td>
+<td>Define the {{< product-c8y-iot >}} processing mode for incoming data. Refer to <a href="https://{{< domain-c8y >}}/api/core/#section/REST-implementation/HTTP-usage"> <b>HTTP usage > Process mode</b></a> in the {{< openapi >}} for more information. Possible values: PERSISTENT, TRANSIENT, QUIESCENT, CEP. Default is PERSISTENT. Note that for the alarm mappings, only the PERSISTENT mode is supported regardless what is being given here.</td>
 </tr>
 <tr>
 <td>overiddenSubscriptions</td>
@@ -1545,9 +1554,35 @@ This has exactly the same fields as *EventCreation*, however the *text* and *typ
 </tbody>
 </table>
 
-####
+####  {#}
 
-#### Updating a device type
+#### Get all OPC UA device types {#get-all-opc-ua-device-types}
+
+**Endpoint**
+
+`GET /service/opcua-mgmt-service/device-types`
+
+**Payload**
+
+The endpoint returns a JSON array of all OPC UA device types.
+
+#### Get a single device type {#get-a-single-device-type}
+
+**Endpoint**
+
+`GET /service/opcua-mgmt-service/device-types/{deviceTypeId}`
+
+**Payload**
+
+A JSON representation of the device type with the given ID if it exists. If not, an error message is returned.
+
+**Response codes**
+
+`200 OK`
+
+`404 Not found`
+
+#### Updating a device type {#updating-a-device-type}
 
 **Endpoint**
 
@@ -1557,7 +1592,7 @@ This has exactly the same fields as *EventCreation*, however the *text* and *typ
 
 The payload of updating a device type is exactly the same as the payload of creating it. Please note that partial update is not supported. All information must be provided in the update request and will completely override the existing device type.
 
-#### Deleting a device type
+#### Deleting a device type {#deleting-a-device-type}
 
 **Endpoint**
 

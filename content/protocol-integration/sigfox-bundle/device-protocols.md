@@ -7,7 +7,7 @@ layout: redirect
 
 To process data from Sigfox devices, {{< product-c8y-iot >}} needs to understand the payload format of the devices. Mapping payload data to {{< product-c8y-iot >}} data can be done by creating a Sigfox device protocol.
 
-During the [device registration](#register-device-sigfox), you can associate this device protocol. The received uplink callbacks for this device with a hexadecimal payload will then be mapped to the ones you have configured in your device protocol.
+During the [device registration](#registering-sigfox-devices), you can associate this device protocol. The received uplink callbacks for this device with a hexadecimal payload will then be mapped to the ones you have configured in your device protocol.
 
 The device protocol assigned during Sigfox device registration can be changed from the **LPWAN** tab in the device details page.
 
@@ -18,17 +18,15 @@ Device protocol mapping only supports decoding for fixed byte positions based on
 The length for the device payload parts, which is set in the **Number of bits** field, can be maximum 32 bits (4 bytes).
 {{< /c8y-admon-info >}}
 
-To create device protocols, select **Device protocols** in the **Device types** menu in the navigator of the Device Management application. You can either import an existing device protocol or create a new one.
+To create device protocols, select **Device protocols** in the **Device types** menu in the navigator of the Device management application. You can either import an existing device protocol or create a new one.
 
-<a name="import-device-type"></a>
-### Importing a device protocol
+### Importing a device protocol {#importing-a-device-protocol}
 
 In the **Device protocols** page, click **Import**.
 
 Select the desired predefined device type or upload it from a file. When ready, click **Import** again.
 
-<a name="create-new-device-type"></a>
-### Creating a new device protocol
+### Creating a new device protocol {#creating-a-new-device-protocol}
 
 In the **Device protocols** page, click **New device protocol** and select **Sigfox** from the options list.
 
@@ -50,7 +48,7 @@ In the user interface, you can enter this type of message type source informatio
 
 ![Sigfox protocol](/images/device-protocols/sigfox/sigfox-bits.png)
 
-#### Configuring values
+#### Configuring values {#configuring-values}
 
 In the **Values** section, click **Add value** to create the value configuration.
 
@@ -123,7 +121,7 @@ The following images show an example for a message which sends a measurement whe
 ![Battery level changes example](/images/device-protocols/sigfox/sigfox-protocols-battery2.png)
 
 
-**<a name="nested-structure-example"></a>Example with nested structure**
+<a name="nested-structure-example"></a>**Example with nested structure**
 
 The following images show an example of a nested structure for a device protocol, reporting the current position of a GPS device. The device protocol is named "Position" and contains values for longitude and latitude.
 
@@ -141,6 +139,6 @@ This will be the result:
 
 ![Value configuration in detail: nested structure](/images/device-protocols/sigfox/sigfox-protocols-gpsexample.png)
 
-### Using Custom decoding/encoding
+### Using custom decoding/encoding {#using-custom-decodingencoding}
 
-The Sigfox agent also supports the decoding/encoding functionality by plugging in Custom microservice. Refer [LPWAN custom codec](../lpwan-custom-codec) for further details.
+The Sigfox agent also supports the decoding/encoding functionality by plugging in Custom microservice. Refer [LPWAN custom codec](/protocol-integration/lpwan-custom-codec) for further details.
