@@ -1,0 +1,33 @@
+---
+title: Imported variables
+weight: 10
+layout: bundle
+---
+
+= Document preamble
+Richard Sill <richard.sill@softwareag.com>
+:description: A demo of Asciidoctor. This document +
+              exercises numerous features of AsciiDoc +
+              to test Asciidoctor compliance.
+:library: Asciidoctor
+ifdef::asciidoctor[]
+////
+:source-highlighter: coderay
+////
+endif::asciidoctor[]
+:idprefix:
+:stylesheet: asciidoc.css
+//:imagesdir: images
+//:backend: docbook45
+//:backend: html5
+//:doctype: book
+//:sectids!:
+:plus: &#43;
+
+include::themes/c8ydocs/layouts/variables.adoc[]
+
+Current version: {c8y-current-version}
+
+Previous version: {c8y-previous-version}
+
+{plus}
