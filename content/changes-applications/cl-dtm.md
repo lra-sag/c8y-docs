@@ -5,6 +5,12 @@ section:
   - change_log
 weight: 20
 ---
+#### December 2023
+####-Feature- Added support for dark mode
+Added support for dark mode, enhancing user experience in low-light environments.
+
+####-Change- Resolved issue causing unexpected crashes
+Resolved an issue that was causing unexpected crashes in certain scenarios.
 November 2023
 
 ### November 2023
